@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS project2db;
+
+CREATE DATABASE project2db;
