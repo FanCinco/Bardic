@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   Places.create({
-    places: req.body.places,
+    places: req.body.place,
     description: req.body.description,
     user_id: req.session.user_id
   })
@@ -87,7 +87,6 @@ router.post('/', (req, res) => {
 
 
 // voting
-
 //review!!!
 
 router.put('/upvote', (req, res) => {
@@ -100,54 +99,55 @@ router.put('/upvote', (req, res) => {
 });
 
 
+// Update 
 
-
-// router.put('/:id', withAuth, (req, res) => {
-//   Post.update(
-//     {
-//       title: req.body.title
-//     },
-//     {
-//       where: {
-//         id: req.params.id
-//       }
-//     }
-//   )
-//     .then(dbPostData => {
-//       if (!dbPostData) {
-//         res.status(404).json({ message: 'No post found with this id' });
-//         return;
-//       }
-//       res.json(dbPostData);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
-
-
+router.put('/:id', (req, res) => {
+  Places.update(
+    {
+      title: req.body.place
+    },
+    {
+      where: {
+        id: req.params.id
+      }
+    }
+  )
+    .then(dbPlacesData => {
+      if (!dbPlacesData) {
+        res.status(404).json({ message: 'No matching data found with this id' });
+        return;
+      }
+      res.json(dbPlacesData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 
 
-// router.delete('/:id', withAuth, (req, res) => {
-//   console.log('id', req.params.id);
-//   Post.destroy({
-//     where: {
-//       id: req.params.id
-//     }
-//   })
-//     .then(dbPostData => {
-//       if (!dbPostData) {
-//         res.status(404).json({ message: 'No post found with this id' });
-//         return;
-//       }
-//       res.json(dbPostData);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+//delete
+
+
+router.delete('/:id', (req, res) => {
+  console.log('id', req.params.id);
+  Places.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbPlacesData => {
+      if (!dbPlacesData) {
+        res.status(404).json({ message: 'No matching data found with this id' });
+        return;
+      }
+      res.json(dbPlacesData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
