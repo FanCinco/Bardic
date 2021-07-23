@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
       {
         model: Places,
         attributes: ['id',
-        'place',
+        'places',
         'description',
         'created_at']
       },
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
       {
         model: Expenses,
         attributes: ['id',
-        'expense',
+        'expenses',
         'dollar_amount',
         'created_at']
       },
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
     //     attributes: ['title'],
     //     through: Vote,
     //     as: 'voted_posts'
-    //   }
+    //   } 
     ]
   })
     .then(dbUserData => {
