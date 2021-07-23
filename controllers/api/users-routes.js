@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Places, Story, Expenses, Users, Vote } = require('../models');
+//insert cons for password package
 
 // get all users
 router.get('/', (req, res) => {
