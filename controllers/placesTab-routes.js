@@ -9,7 +9,7 @@ const { Places, Story, Expenses, Users, Vote } = require('../models');
 router.get('/', (req, res) => {
   console.log(req.session);
   console.log('======================');
-  Place.findAll({
+  Places.findAll({
     // where: {
     //   user_id: req.session.user_id
     // },
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
       'place',
       'description',
       'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
     ],
     include: [
       {
@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
     ]
   })
     .then(dbPlacesData => {
-      const place = dbPlacesData.map(place => place.get({ plain: true }));
-      res.render('places', { place, loggedIn: true });
+      const places = dbPlacesData.map(places => places.get({ plain: true }));
+      res.render('places', { places, loggedIn: true });
     })
     .catch(err => {
       console.log(err);
@@ -41,13 +41,13 @@ router.get('/', (req, res) => {
 // edit places 
 
 router.get('/edit/:id', (req, res) => {
-  Place.findByPk(req.params.id, {
+  Places.findByPk(req.params.id, {
     attributes: [
       'id',
       'place',
       'description',
       'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE placesid = vote.places_id)'), 'vote_count']
     ],
     include: [
       {
@@ -58,9 +58,9 @@ router.get('/edit/:id', (req, res) => {
   })
     .then(dbPlacesData => {
       if (dbPlacesData) {
-        const place = dbPlacesData.get({ plain: true });
+        const places = dbPlacesData.get({ plain: true });
 
-        res.render('edit-place', { place, loggedIn: true });
+        res.render('edit-places', { places, loggedIn: true });
       } else {
         res.status(404).end();
       }
