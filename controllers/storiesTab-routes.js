@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Places, Story, Expenses, Users, Vote } = require('../models');
+const { Places, Stories, Expenses, Users, Vote } = require('../models');
 //insert cons for password package
 
 
@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
         ]
     })
         .then(dbStoriesData => {
-            const story = dbStoriesData.map(story => story.get({ plain: true }));
-            res.render('stories', { story, loggedIn: true });
+            const stories = dbStoriesData.map(stories => stories.get({ plain: true }));
+            res.render('stories', { stories, loggedIn: true });
         })
         .catch(err => {
             console.log(err);
@@ -46,7 +46,7 @@ router.get('/edit/:id', (req, res) => {
             'title',
             'content',
             'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE story.id = vote.storyid)'), 'vote_count']
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.storiesid)'), 'vote_count']
         ],
         include: [
             {
@@ -57,9 +57,9 @@ router.get('/edit/:id', (req, res) => {
     })
         .then(dbStoriesData => {
             if (dbStoriesData) {
-                const story = dbStoriesData.get({ plain: true });
+                const stories = dbStoriesData.get({ plain: true });
 
-                res.render('edit-story', { story, loggedIn: true });
+                res.render('edit-stories', { stories, loggedIn: true });
             } else {
                 res.status(404).end();
             }

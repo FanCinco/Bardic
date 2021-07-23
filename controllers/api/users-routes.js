@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
         'created_at']
       },
       {
-        model: Story,
+        model: Stories,
         attributes: ['id',
         'title',
         'content',

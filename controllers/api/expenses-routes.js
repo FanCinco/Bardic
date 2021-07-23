@@ -91,7 +91,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     Expenses.update(
         {
-            title: req.body.expenses
+            expenses: req.body.expenses
         },
         {
             where: {

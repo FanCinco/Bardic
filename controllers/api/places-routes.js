@@ -104,7 +104,7 @@ router.put('/upvote', (req, res) => {
 router.put('/:id', (req, res) => {
   Places.update(
     {
-      title: req.body.places
+      places: req.body.places
     },
     {
       where: {
