@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// get single post
+// get single place
 router.get('/post/:id', (req, res) => {
   Post.findOne({
     where: {
@@ -72,6 +72,42 @@ router.get('/post/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+// get a single entry using primnary key to edit
+router.get('/edit/:id', (req, res) => {
+  Post.findByPk(req.params.id, {
+    attributes: [
+      'id',
+      'Description', 
+      'Name',
+      'created_at',
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+    .then(dbPlacesData => {
+      if (dbPlacesData) {
+        const post = dbPlacesData.get({ plain: true });
+        
+        res.render('edit-place', {
+          post,
+          loggedIn: true
+        });
+      } else {
+        res.status(404).end();
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+
 
 // router.get('/login', (req, res) => {
 //   if (req.session.loggedIn) {
