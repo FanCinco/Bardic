@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Places, Story, Expenses, Users, Vote } = require('../models');
+//insert cons for password package
 
 // get all places 
 router.get('/', (req, res) => {
