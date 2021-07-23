@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     Places.findAll({
       attributes: [
         'id',
-        'place',
+        'places',
         'description',
         'created_at',
         //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
     },
     attributes: [
         'id',
-        'place',
+        'places',
         'description',
         'created_at',
         //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   Places.create({
-    places: req.body.place,
+    places: req.body.places,
     description: req.body.description,
     user_id: req.session.user_id
   })
@@ -104,7 +104,7 @@ router.put('/upvote', (req, res) => {
 router.put('/:id', (req, res) => {
   Places.update(
     {
-      title: req.body.place
+      title: req.body.places
     },
     {
       where: {

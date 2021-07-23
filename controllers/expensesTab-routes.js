@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
         // },
         attributes: [
             'id',
-            'expense',
+            'expenses',
             'dollar_amount',
             'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
         ],
         include: [
             {
@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
         ]
     })
         .then(dbExpensesData => {
-            const expense = dbExpensesData.map(expense => expense.get({ plain: true }));
-            res.render('expenses', { expense, loggedIn: true });
+            const expenses = dbExpensesData.map(expenses => expenses.get({ plain: true }));
+            res.render('expenses', { expenses, loggedIn: true });
         })
         .catch(err => {
             console.log(err);
@@ -43,7 +43,7 @@ router.get('/edit/:id', (req, res) => {
     Expenses.findByPk(req.params.id, {
         attributes: [
             'id',
-            'expense',
+            'expenses',
             'dollar_amount',
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
@@ -57,9 +57,9 @@ router.get('/edit/:id', (req, res) => {
     })
         .then(dbExpensesData => {
             if (dbExpensesData) {
-                const expense = dbExpensesData.get({ plain: true });
+                const expenses = dbExpensesData.get({ plain: true });
 
-                res.render('edit-story', { expense, loggedIn: true });
+                res.render('edit-story', { expenses, loggedIn: true });
             } else {
                 res.status(404).end();
             }
