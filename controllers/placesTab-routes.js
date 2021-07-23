@@ -3,16 +3,22 @@ const sequelize = require('../config/connection');
 const { Places, Story, Expenses, Users, Vote } = require('../models');
 //insert cons for password package
 
-// get all places 
+
+//get all places 
+
 router.get('/', (req, res) => {
+  console.log(req.session);
   console.log('======================');
-  Post.findAll({
+  Place.findAll({
+    // where: {
+    //   user_id: req.session.user_id
+    // },
     attributes: [
       'id',
-      'Description', 
-      'Name',
+      'place',
+      'description',
       'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
     ],
     include: [
       {
@@ -22,12 +28,8 @@ router.get('/', (req, res) => {
     ]
   })
     .then(dbPlacesData => {
-      const posts = dbPlacesData.map(post => post.get({ plain: true }));
-
-      res.render('places', {
-        posts,
-        loggedIn: req.session.loggedIn
-      });
+      const place = dbPlacesData.map(place => place.get({ plain: true }));
+      res.render('dashboard', { place, loggedIn: true });
     })
     .catch(err => {
       console.log(err);
@@ -35,54 +37,14 @@ router.get('/', (req, res) => {
     });
 });
 
-// get single place
-router.get('/post/:id', (req, res) => {
-  Post.findOne({
-    where: {
-      id: req.params.id
-    },
-    attributes: [
-      'id',
-      'Description', 
-      'Name',
-      'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
-    .then(dbPlacesData => {
-      if (!dbPlacesData) {
-        res.status(404).json({ message: 'No matching place found with this id' });
-        return;
-      }
-
-      const post = dbPlacesData.get({ plain: true });
-
-      res.render('single-place', {
-        post,
-        loggedIn: req.session.loggedIn
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-// get a single entry using primnary key to edit
 router.get('/edit/:id', (req, res) => {
-  Post.findByPk(req.params.id, {
+  Place.findByPk(req.params.id, {
     attributes: [
       'id',
-      'Description', 
-      'Name',
+      'place',
+      'description',
       'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+//[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
     ],
     include: [
       {
@@ -93,12 +55,9 @@ router.get('/edit/:id', (req, res) => {
   })
     .then(dbPlacesData => {
       if (dbPlacesData) {
-        const post = dbPlacesData.get({ plain: true });
+        const place = dbPlacesData.get({ plain: true });
         
-        res.render('edit-place', {
-          post,
-          loggedIn: true
-        });
+        res.render('edit-place', {place, loggedIn: true});
       } else {
         res.status(404).end();
       }
@@ -107,7 +66,6 @@ router.get('/edit/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
 
 
 // router.get('/login', (req, res) => {
@@ -120,4 +78,60 @@ router.get('/edit/:id', (req, res) => {
 // });
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
