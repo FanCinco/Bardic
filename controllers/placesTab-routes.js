@@ -29,13 +29,16 @@ router.get('/', (req, res) => {
   })
     .then(dbPlacesData => {
       const place = dbPlacesData.map(place => place.get({ plain: true }));
-      res.render('dashboard', { place, loggedIn: true });
+      res.render('places', { place, loggedIn: true });
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
+
+
+// edit places 
 
 router.get('/edit/:id', (req, res) => {
   Place.findByPk(req.params.id, {
@@ -44,7 +47,7 @@ router.get('/edit/:id', (req, res) => {
       'place',
       'description',
       'created_at',
-//[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
     ],
     include: [
       {
@@ -56,8 +59,8 @@ router.get('/edit/:id', (req, res) => {
     .then(dbPlacesData => {
       if (dbPlacesData) {
         const place = dbPlacesData.get({ plain: true });
-        
-        res.render('edit-place', {place, loggedIn: true});
+
+        res.render('edit-place', { place, loggedIn: true });
       } else {
         res.status(404).end();
       }
