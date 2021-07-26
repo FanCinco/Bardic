@@ -17,7 +17,7 @@ Place.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    place_id: {
+    story_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

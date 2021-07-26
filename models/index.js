@@ -24,7 +24,7 @@ User.hasMany(UserTrip, {
   foreignKey: 'user_id'
 });
 
-Post.belongsToMany(User, {
+Post.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
@@ -62,7 +62,7 @@ Trip.hasMany(Story, {
   foreignKey: 'trip_id'
 });
 
-// ===========================
+// ==========================
 Trip.hasMany(Post.hasOne, {
   foreignKey: 'trip_id'
 });
