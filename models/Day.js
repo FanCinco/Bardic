@@ -16,6 +16,14 @@ Day.init(
     date: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    trip_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'trip',
+        key: 'id'
+      }
     }
   },
   {

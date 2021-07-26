@@ -68,6 +68,14 @@ Trip.hasMany(Post.hasOne, {
 });
 // ==========================
 
+Trip.hasMany(Day, {
+  foreignKey: 'trip_id'
+});
+
+Day.belongsTo(Trip, {
+  foreignKey: 'trip_id'
+});
+
 UserTrip.belongsTo(Trip, {
   foreignKey: 'trip_id'
 });
@@ -106,6 +114,8 @@ Day.hasMany(DailyExpense, {
 DailyExpense.belongsTo(Day, {
   foreignKey: 'day_id'
 });
+
+
 
 
 module.exports = {
