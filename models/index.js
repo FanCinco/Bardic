@@ -98,6 +98,15 @@ Comment.belongsTo(Post, {
   foreignKey: 'post_id'
 });
 
+// Day associations
+Day.hasMany(DailyExpense, {
+  foreignKey: 'day_id'
+});
+
+DailyExpense.belongsTo(Day, {
+  foreignKey: 'day_id'
+});
+
 
 module.exports = {
   Comment,
