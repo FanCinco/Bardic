@@ -30,30 +30,30 @@ router.get('/:id', (req, res) => {
           'user_id',
           'created_at']
       },
-      {
-        model: Expenses,
-        attributes: [
-          'id',
-          'description',
-          'cost',
-          'day_id',
-          'created_at']
-      },
-      {
-        model: Day,
-        attributes: [
-          'id',
-          'date',
-          'trip_id',
-          'created_at']
-      },
-      {
-        model: Places,
-        attributes: [
-          'id',
-          'name',
-          'created_at']
-      },
+      // {
+      //   model: Expenses,
+      //   attributes: [
+      //     'id',
+      //     'description',
+      //     'cost',
+      //     'day_id',
+      //     'created_at']
+      // },
+      // {
+      //   model: Day,
+      //   attributes: [
+      //     'id',
+      //     'date',
+      //     'trip_id',
+      //     'created_at']
+      // },
+      // {
+      //   model: Places,
+      //   attributes: [
+      //     'id',
+      //     'name',
+      //     'created_at']
+      // },
       {
         model: Posts,
         attributes: [
@@ -63,41 +63,41 @@ router.get('/:id', (req, res) => {
           'story_id',
           'created_at']
       },
-      {
-        model: Stories,
-        attributes: [
-          'id',
-          'title',
-          'starting text',
-          'trip_id',
-          'place_id',
-          'created_at']
-      },
-      {
-        model: Trips,
-        attributes: [
-          'id',
-          'title',
-          'place_id',
-          'created_at']
-      },
-      {
-        model: User,
-        attributes: [
-          'id',
-          'firstName',
-          'lastName',
-          'email',
-          'password',
-          'created_at']
-      },
+      // {
+      //   model: Stories,
+      //   attributes: [
+      //     'id',
+      //     'title',
+      //     'starting text',
+      //     'trip_id',
+      //     'place_id',
+      //     'created_at']
+      // },
+      // {
+      //   model: User,
+      //   attributes: [
+      //     'id',
+      //     'firstName',
+      //     'lastName',
+      //     'email',
+      //     'password',
+      //     'created_at']
+      // },
       {
         model: UserTrip,
         attributes: [
           'id',
           'user_id',
           'trip_id',
-          'created_at']
+          'created_at'],
+        include: {
+          model: Trips,
+          attributes: [
+            'id',
+            'title',
+            'place_id',
+            'created_at']
+        },
       },
     ]
   })
