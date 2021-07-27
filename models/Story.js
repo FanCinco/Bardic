@@ -18,7 +18,7 @@ Story.init(
       allowNull: false
     },
     startingText: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     trip_id: {

@@ -1,6 +1,7 @@
 const seedUsers = require('./user-seeds');
 const seedPlaces = require('./place-seeds');
 const seedTrips = require('./trip-seeds');
+const seedUserTrips = require('./userTrip-seeds');
 const seedDays = require('./day-seeds');
 const seedDailyExpenses = require('./daily-expenses-seeds');
 const seedStories = require('./story-seeds');
@@ -16,8 +17,12 @@ const seedAll = async () => {
     console.log('\n----- USERS SEEDED -----\n');
     await seedPlaces();
     console.log('\n----- PLACES SEEDED -----\n');
+    await seedPlaces();
+    console.log('\n----- PLACES SEEDED -----\n');
     await seedTrips();
     console.log('\n----- TRIPS SEEDED -----\n');
+    await seedUserTrips();
+    console.log('\n----- USERTRIPS SEEDED -----\n');
     await seedDays();
     console.log('\n----- DAYS SEEDED -----\n');
     await seedDailyExpenses();
