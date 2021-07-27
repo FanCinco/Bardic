@@ -41,16 +41,16 @@ Place.hasMany(Trip, {
   foreignKey: 'place_id'
 })
 
-Place.hasMany(Story, {
-  foreignKey: 'place_id'
-});
-
 Trip.belongsTo(Place, {
   foreignKey: 'place_id'
 });
 
-Story.belongsTo(Place, {
+Place.hasMany(Story, {
   foreignKey: 'place_id'
+});
+
+Story.belongsTo(Place, {
+  foreignKey: "place_id"
 });
 
 // Trip associations
@@ -58,15 +58,6 @@ Trip.hasMany(UserTrip, {
   foreignKey: 'trip_id'
 });
 
-Trip.hasMany(Story, {
-  foreignKey: 'trip_id'
-});
-
-// ==========================
-Trip.hasMany(Post.hasOne, {
-  foreignKey: 'trip_id'
-});
-// ==========================
 
 Trip.hasMany(Day, {
   foreignKey: 'trip_id'
@@ -78,10 +69,6 @@ Day.belongsTo(Trip, {
 
 UserTrip.belongsTo(Trip, {
   foreignKey: 'trip_id'
-});
-
-Story.belongsTo(Trip, {
-  foreignKey: "trip_id"
 });
 
 Post.belongsTo(Trip, {

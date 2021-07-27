@@ -28,6 +28,14 @@ Story.init(
         model: 'trip',
         key: 'id'
       }
+    },
+    place_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'place',
+        key: 'id'
+      }
     }
   },
   {

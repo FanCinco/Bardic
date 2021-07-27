@@ -16,14 +16,6 @@ Place.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    story_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'story',
-        key: 'id'
-      }
     }
   },
   {
