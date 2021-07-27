@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Story, Trip, User, userTrip } = require('../models');
+const { Comments, Expenses, Day, Places, Posts, Stories, Trip, User, userTrip } = require('../models');
 //insert cons for password package
 
 
@@ -18,11 +18,20 @@ router.get('/', (req, res) => {
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
         ],
         include: [
+            // {
+            //     model: User,
+            //     attributes: ['username']
+            // },
             {
-                model: User,
-                attributes: ['username']
-            }
+                model: Comments,
+                attributes: ['id', 'title', 'startingText', 'trip_id', 'place_id', 'created_at'],
+                include: {
+                  model: User,
+                  attributes: ['username']
+                }
+              },
         ]
+        
     })
         .then(dbStoriesData => res.json(dbStoriesData))
         .catch(err => {
@@ -50,10 +59,18 @@ router.get('/:id', (req, res) => {
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
         ],
         include: [
+            // {
+            //     model: User,
+            //     attributes: ['username']
+            // },
             {
-                model: User,
-                attributes: ['username']
-            }
+                model: Comments,
+                attributes: ['id', 'title', 'startingText', 'trip_id', 'place_id', 'created_at'],
+                include: {
+                  model: User,
+                  attributes: ['username']
+                }
+              },
         ]
     })
         .then(dbStoriesData => {
