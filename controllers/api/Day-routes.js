@@ -65,7 +65,9 @@ router.put('/:id', (req, res) => {
         {
             where: {
                 id: req.params.id
-            }
+            },
+            date: req.body.date,
+            trip_id: req.body.trip_id
         }
     )
         .then(dbDayData => {

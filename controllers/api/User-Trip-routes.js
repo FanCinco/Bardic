@@ -65,7 +65,9 @@ router.put('/:id', (req, res) => {
         {
             where: {
                 id: req.params.id
-            }
+            },
+            user_id: req.session.user_id,
+            trip_id: req.body.trip_id
         }
     )
         .then(dbUserTripData => {
@@ -106,4 +108,4 @@ router.delete('/:id', (req, res) => {
         });
 });
 
- module.exports = router;
+module.exports = router;

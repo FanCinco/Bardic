@@ -66,7 +66,10 @@ router.put('/:id', (req, res) => {
         {
             where: {
                 id: req.params.id
-            }
+            },
+            content: req.body.content,
+            user_id: req.session.user_id,
+            post_id: req.body.post_id
         }
     )
         .then(dbCommentsData => {
