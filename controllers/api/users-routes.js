@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comments, Expenses, Day, Places, Posts, Stories, Trip, User, userTrip } = require('../models');
+const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, userTrip } = require('../models');
 //insert cons for password package
 
 // get all users
@@ -74,7 +74,7 @@ router.get('/:id', (req, res) => {
           'created_at']
       },
       {
-        model: Trip,
+        model: Trips,
         attributes: [
           'id',
           'title',
