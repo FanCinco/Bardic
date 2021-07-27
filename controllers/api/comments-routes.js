@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Comment, DailyExpense, Day, Place, Post, Story, Trip, User, userTrip } = require('../models');
+const { Comments, DailyExpense, Day, Place, Post, Story, Trip, User, userTrip } = require('../models');
 //insert cons for password package
 
 
@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
 // Update 
 
 router.put('/:id', (req, res) => {
-    Comments.update(
+    Comments.update(req.body,
         {
             where: {
                 id: req.params.id
