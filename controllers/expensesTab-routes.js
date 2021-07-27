@@ -21,12 +21,12 @@ router.get('/', (req, res) => {
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
         ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
+        // include: [
+        //     {
+        //         model: User,
+        //         attributes: ['username']
+        //     }
+        // ]
     })
         .then(dbExpensesData => {
             const expenses = dbExpensesData.map(expenses => expenses.get({ plain: true }));
@@ -50,12 +50,12 @@ router.get('/edit/:id', (req, res) => {
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
         ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
+        // include: [
+        //     {
+        //         model: User,
+        //         attributes: ['username']
+        //     }
+        // ]
     })
         .then(dbExpensesData => {
             if (dbExpensesData) {
