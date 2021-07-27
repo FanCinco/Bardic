@@ -22,32 +22,83 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model: Places,
-        attributes: ['id',
-        'places',
-        'description',
-        'created_at']
+        model: Comment,
+        attributes: [
+          'id',
+          'content',
+          'post_id',
+          'user_id',
+          'created_at']
       },
       {
-        model: Stories,
-        attributes: ['id',
-        'title',
-        'content',
-        'created_at']
+        model: DailyExpense,
+        attributes: [
+          'id',
+          'description',
+          'cost',
+          'day_id',
+          'created_at']
       },
       {
-        model: Expenses,
-        attributes: ['id',
-        'expenses',
-        'dollar_amount',
-        'created_at']
+        model: Day,
+        attributes: [
+          'id',
+          'date',
+          'trip_id',
+          'created_at']
       },
-    //   {
-    //     model: Post,
-    //     attributes: ['title'],
-    //     through: Vote,
-    //     as: 'voted_posts'
-    //   } 
+      {
+        model: Place,
+        attributes: [
+          'id',
+          'name',
+          'created_at']
+      },
+      {
+        model: Post,
+        attributes: [
+          'id',
+          'content',
+          'user_id',
+          'story_id',
+          'created_at']
+      },
+      {
+        model: Story,
+        attributes: [
+          'id',
+          'title',
+          'starting text',
+          'trip_id',
+          'place_id',
+          'created_at']
+      },
+      {
+        model: Trip,
+        attributes: [
+          'id',
+          'title',
+          'place_id',
+          'created_at']
+      },
+      {
+        model: User,
+        attributes: [
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+          'password',
+          'created_at']
+      },
+      {
+        model: userTrip,
+        attributes: [
+          'id',
+          'user_id',
+          'trip_id',
+          'created_at']
+      },
     ]
   })
     .then(dbUserData => {
@@ -77,7 +128,7 @@ router.post('/', (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-  
+
         res.json(dbUserData);
       });
     })
@@ -112,7 +163,7 @@ router.post('/login', (req, res) => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-  
+
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
   });
@@ -134,7 +185,7 @@ router.post('/logout', (req, res) => {
 //update user 
 
 router.put('/:id', (req, res) => {
-  // this passes in req.body to only update what's passed through the code
+
   User.update(req.body, {
     where: {
       id: req.params.id

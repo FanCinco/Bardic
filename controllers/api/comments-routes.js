@@ -7,20 +7,7 @@ const { Comment, DailyExpense, Day, Place, Post, Story, Trip, User, userTrip } =
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Comments.findAll({
-        attributes: [
-            'id',
-            'content',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
+    Comments.findAll()
         .then(dbCommentsData => res.json(dbCommentsData))
         .catch(err => {
             console.log(err);
@@ -37,18 +24,6 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: [
-            'id',
-            'content',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
     })
         .then(dbCommentsData => {
             if (!dbCommentsData) {
@@ -88,9 +63,6 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     Comments.update(
-        {
-            title: req.body.title
-        },
         {
             where: {
                 id: req.params.id

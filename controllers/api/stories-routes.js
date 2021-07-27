@@ -11,7 +11,9 @@ router.get('/', (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'startingText',
+            'trip_id',
+            'place_id',
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
         ],
@@ -41,7 +43,9 @@ router.get('/:id', (req, res) => {
         attributes: [
             'id',
             'title',
-            'content',
+            'startingText',
+            'trip_id',
+            'place_id',
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
         ],
@@ -75,8 +79,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Stories.create({
         title: req.body.title,
-        content: req.body.content,
-        user_id: req.session.user_id
+        startingText: req.body.content,
+        trip_id: req.body.trip_id,
+        place_id: req.body.place_id,
     })
         .then(dbStoriesData => res.json(dbStoriesData))
         .catch(err => {
@@ -91,7 +96,10 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     Stories.update(
         {
-            title: req.body.title
+            title: req.body.title,
+            startingText: req.body.content,
+            trip_id: req.body.trip_id,
+            place_id: req.body.place_id,
         },
         {
             where: {

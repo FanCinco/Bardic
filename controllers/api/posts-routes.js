@@ -11,8 +11,10 @@ router.get('/', (req, res) => {
         attributes: [
             'id',
             'content',
+            'user_id',
+            'story_id',
             'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE posts.id = vote.posts_id)'), 'vote_count']
         ],
         include: [
             {
@@ -40,8 +42,10 @@ router.get('/:id', (req, res) => {
         attributes: [
             'id',
             'content',
+            'user_id',
+            'story_id',
             'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE posts.id = vote.posts_id)'), 'vote_count']
         ],
         include: [
             {
@@ -74,7 +78,7 @@ router.post('/', (req, res) => {
     Posts.create({
         content: req.body.content,
         user_id: req.session.user_id,
-        story_id: req.body.post_id
+        story_id: req.body.story_id
     })
         .then(dbPostsData => res.json(dbPostsData))
         .catch(err => {
@@ -89,7 +93,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     Posts.update(
         {
-            title: req.body.title
+            content: req.body.content
         },
         {
             where: {

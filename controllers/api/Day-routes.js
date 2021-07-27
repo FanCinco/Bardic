@@ -7,21 +7,7 @@ const { Comment, DailyExpense, Day, Place, Post, Story, Trip, User, userTrip } =
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Day.findAll({
-        attributes: [
-            'id',
-            'date',
-            'trip_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE day.id = vote.day_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
+    Day.findAll()
         .then(dbDayData => res.json(dbDayData))
         .catch(err => {
             console.log(err);
@@ -38,19 +24,6 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: [
-            'id',
-            'date',
-            'trip_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE day.id = vote.day_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
     })
         .then(dbDayData => {
             if (!dbDayData) {
@@ -89,9 +62,6 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     Day.update(
-        {
-            title: req.body.title
-        },
         {
             where: {
                 id: req.params.id

@@ -10,8 +10,7 @@ router.get('/', (req, res) => {
     Places.findAll({
       attributes: [
         'id',
-        'places',
-        'description',
+        'name',
         'created_at',
         //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
       ],
@@ -40,8 +39,7 @@ router.get('/:id', (req, res) => {
     },
     attributes: [
         'id',
-        'places',
-        'description',
+        'name',
         'created_at',
         //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
       ],
@@ -74,24 +72,10 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   Places.create({
-    places: req.body.places,
-    description: req.body.description,
+    name: req.body.name,
     user_id: req.session.user_id
   })
     .then(dbPlacesData => res.json(dbPlacesData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-
-// voting
-//review!!!
-
-router.put('/upvote', (req, res) => {
-    Places.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Places, User })
-    .then(updatedVoteData => res.json(updatedVoteData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -149,5 +133,27 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
+
+
+
+
+// voting
+//REVIEW!!!
+
+router.put('/upvote', (req, res) => {
+  Places.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Places, User })
+  .then(updatedVoteData => res.json(updatedVoteData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+
+
+
+
 
 module.exports = router;

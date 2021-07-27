@@ -10,8 +10,9 @@ router.get('/', (req, res) => {
     Expenses.findAll({
         attributes: [
             'id',
-            'expenses',
-            'dollar_amount',
+            'description',
+            'cost',
+            'day_id',
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
         ],
@@ -40,8 +41,9 @@ router.get('/:id', (req, res) => {
         },
         attributes: [
             'id',
-            'expenses',
-            'dollar_amount',
+            'description',
+            'cost',
+            'day_id',
             'created_at',
             //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
         ],
@@ -74,9 +76,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     Expenses.create({
-        expenses: req.body.expenses,
-        dollar_amount: req.body.dollar_amount,
-        user_id: req.session.user_id
+        description: req.body.description,
+        cost: req.body.cost,
+        day_id: req.body.day_id
     })
         .then(dbExpensesData => res.json(dbExpensesData))
         .catch(err => {
@@ -91,7 +93,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     Expenses.update(
         {
-            expenses: req.body.expenses
+            description: req.body.description,
+            cost: req.body.cost,
         },
         {
             where: {

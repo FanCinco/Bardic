@@ -7,20 +7,7 @@ const { Comment, DailyExpense, Day, Place, Post, Story, Trip, User, userTrip } =
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Trips.findAll({
-        attributes: [
-            'id',
-            'title',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
+    Trips.findAll()
         .then(dbTripsData => res.json(dbTripsData))
         .catch(err => {
             console.log(err);
@@ -33,23 +20,7 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Trips.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: [
-            'id',
-            'title',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
+    Trips.findOne()
         .then(dbTripsData => {
             if (!dbTripsData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
@@ -73,7 +44,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Trips.create({
         title: req.body.title,
-        user_id: req.session.user_id
+        place_id: req.body.place_id
     })
         .then(dbTripsData => res.json(dbTripsData))
         .catch(err => {
@@ -88,7 +59,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     Trips.update(
         {
-            title: req.body.title
+            title: req.body.title,
+            place_id: req.body.place_id
         },
         {
             where: {
