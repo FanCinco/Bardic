@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Place, Post, Story, Trip, User, userTrip } = require('../models');
+const { Comments, Expenses, Day, Places, Post, Story, Trip, User, userTrip } = require('../models');
 //insert cons for password package
 
 
@@ -14,12 +14,7 @@ router.get('/', (req, res) => {
         'created_at',
         //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
       ],
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
+      
     })
     .then(dbPlacesData => res.json(dbPlacesData))
     .catch(err => {
@@ -43,12 +38,7 @@ router.get('/:id', (req, res) => {
         'created_at',
         //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
       ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
+    
   })
     .then(dbPlacesData => {
       if (!dbPlacesData) {
