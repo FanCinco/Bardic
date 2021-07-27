@@ -15,8 +15,7 @@ router.get('/', (req, res) => {
     // },
     attributes: [
       'id',
-      'places',
-      'description',
+      'name',
       'created_at',
       //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
     ],
@@ -44,8 +43,7 @@ router.get('/edit/:id', (req, res) => {
   Places.findByPk(req.params.id, {
     attributes: [
       'id',
-      'places',
-      'description',
+      'name',
       'created_at',
       //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE placesid = vote.places_id)'), 'vote_count']
     ],
