@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Post, Story, Trip, User, userTrip } = require('../models');
+const { Comments, Expenses, Day, Places, Posts, Story, Trip, User, userTrip } = require('../models');
 //insert cons for password package
 
 
@@ -20,7 +20,15 @@ router.get('/', (req, res) => {
             {
                 model: User,
                 attributes: ['username']
-            }
+            },
+            {
+                model: Comments,
+                attributes: ['id', 'content', 'user_id', 'story_id', 'created_at'],
+                include: {
+                  model: User,
+                  attributes: ['username']
+                }
+              },
         ]
     })
         .then(dbPostsData => res.json(dbPostsData))
@@ -51,7 +59,15 @@ router.get('/:id', (req, res) => {
             {
                 model: User,
                 attributes: ['username']
-            }
+            },
+            {
+                model: Comments,
+                attributes: ['id', 'content', 'user_id', 'story_id', 'created_at'],
+                include: {
+                  model: User,
+                  attributes: ['username']
+                }
+              },
         ]
     })
         .then(dbPostsData => {
