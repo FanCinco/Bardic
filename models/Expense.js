@@ -1,11 +1,11 @@
-const { Model, DataTypes, DECIMAL } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create DailyExpense model
-class DailyExpense extends Model {}
+// create Expense model
+class Expense extends Model {}
 
-// create fields/columns for DailyExpense
-DailyExpense.init(
+// create fields/columns for Expense
+Expense.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -35,8 +35,8 @@ DailyExpense.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'dailyexpense'
+    modelName: 'Expense'
   }
 );
 
-module.exports = DailyExpense;
+module.exports = Expense;

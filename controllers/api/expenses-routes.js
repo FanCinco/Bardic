@@ -1,20 +1,17 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Expense } = require('../../models');
 //insert cons for password package
 
 
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Expenses.findAll({
+    Expense.findAll({
         attributes: [
             'id',
             'description',
             'cost',
             'day_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
         ],
         // include: [
         //     {
@@ -23,7 +20,7 @@ router.get('/', (req, res) => {
         //     }
         // ]
     })
-        .then(dbExpensesData => res.json(dbExpensesData))
+        .then(dbExpenseData => res.json(dbExpenseData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -35,7 +32,7 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Expenses.findOne({
+    Expense.findOne({
         where: {
             id: req.params.id
         },
@@ -44,8 +41,6 @@ router.get('/:id', (req, res) => {
             'description',
             'cost',
             'day_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
         ],
         // include: [
         //     {
@@ -54,12 +49,12 @@ router.get('/:id', (req, res) => {
         //     }
         // ]
     })
-        .then(dbExpensesData => {
-            if (!dbExpensesData) {
+        .then(dbExpenseData => {
+            if (!dbExpenseData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbExpensesData);
+            res.json(dbExpenseData);
         })
         .catch(err => {
             console.log(err);
@@ -75,12 +70,12 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    Expenses.create({
+    Expense.create({
         description: req.body.description,
         cost: req.body.cost,
         day_id: req.body.day_id
     })
-        .then(dbExpensesData => res.json(dbExpensesData))
+        .then(dbExpenseData => res.json(dbExpenseData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -91,7 +86,7 @@ router.post('/', (req, res) => {
 // Update 
 
 router.put('/:id', (req, res) => {
-    Expenses.update(
+    Expense.update(
         {
             description: req.body.description,
             cost: req.body.cost,
@@ -102,12 +97,12 @@ router.put('/:id', (req, res) => {
             }
         }
     )
-        .then(dbExpensesData => {
-            if (!dbExpensesData) {
+        .then(dbExpenseData => {
+            if (!dbExpenseData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbExpensesData);
+            res.json(dbExpenseData);
         })
         .catch(err => {
             console.log(err);
@@ -122,17 +117,17 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
-    Expenses.destroy({
+    Expense.destroy({
         where: {
             id: req.params.id
         }
     })
-        .then(dbExpensesData => {
-            if (!dbExpensesData) {
+        .then(dbExpenseData => {
+            if (!dbExpenseData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbExpensesData);
+            res.json(dbExpenseData);
         })
         .catch(err => {
             console.log(err);

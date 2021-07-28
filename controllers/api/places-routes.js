@@ -1,22 +1,20 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Comments, Expenses, Day, Place, Posts, Stories, Trips, User, UserTrip } = require('../../models');
 //insert cons for password package
 
 
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Places.findAll({
+    Place.findAll({
       attributes: [
         'id',
-        'name',
-        'created_at',
-        //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
+        'name'
       ],
       
     })
-    .then(dbPlacesData => res.json(dbPlacesData))
+    .then(dbPlaceData => res.json(dbPlaceData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -28,24 +26,22 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Places.findOne({
+    Place.findOne({
     where: {
       id: req.params.id
     },
     attributes: [
         'id',
-        'name',
-        'created_at',
-        //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
+        'name'
       ],
     
   })
-    .then(dbPlacesData => {
-      if (!dbPlacesData) {
+    .then(dbPlaceData => {
+      if (!dbPlaceData) {
         res.status(404).json({ message: 'No matching data found with this id' });
         return;
       }
-      res.json(dbPlacesData);
+      res.json(dbPlaceData);
     })
     .catch(err => {
       console.log(err);
@@ -54,18 +50,13 @@ router.get('/:id', (req, res) => {
 });
 
 
-
-
-
 // create new entries
-
-
 router.post('/', (req, res) => {
-  Places.create({
+  Place.create({
     name: req.body.name,
     user_id: req.session.user_id
   })
-    .then(dbPlacesData => res.json(dbPlacesData))
+    .then(dbPlaceData => res.json(dbPlaceData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -76,9 +67,9 @@ router.post('/', (req, res) => {
 // Update 
 
 router.put('/:id', (req, res) => {
-  Places.update(
+  Place.update(
     {
-      places: req.body.places
+      name: req.body.name
     },
     {
       where: {
@@ -86,12 +77,12 @@ router.put('/:id', (req, res) => {
       }
     }
   )
-    .then(dbPlacesData => {
-      if (!dbPlacesData) {
+    .then(dbPlaceData => {
+      if (!dbPlaceData) {
         res.status(404).json({ message: 'No matching data found with this id' });
         return;
       }
-      res.json(dbPlacesData);
+      res.json(dbPlaceData);
     })
     .catch(err => {
       console.log(err);
@@ -106,17 +97,17 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   console.log('id', req.params.id);
-  Places.destroy({
+  Place.destroy({
     where: {
       id: req.params.id
     }
   })
-    .then(dbPlacesData => {
-      if (!dbPlacesData) {
+    .then(dbPlaceData => {
+      if (!dbPlaceData) {
         res.status(404).json({ message: 'No matching data found with this id' });
         return;
       }
-      res.json(dbPlacesData);
+      res.json(dbPlaceData);
     })
     .catch(err => {
       console.log(err);
@@ -133,7 +124,7 @@ router.delete('/:id', (req, res) => {
 //REVIEW!!!
 
 router.put('/upvote', (req, res) => {
-  Places.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Places, User })
+  Place.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Place, User })
   .then(updatedVoteData => res.json(updatedVoteData))
   .catch(err => {
     console.log(err);

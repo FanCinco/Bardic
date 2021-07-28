@@ -1,6 +1,6 @@
-const { DailyExpense } = require('../models');
+const { Expense } = require('../models');
 
-const dailyExpenseData = [
+const expenseData = [
     {
         description: 'We bought lunch at a coffee shop.',
         cost: 28.37,
@@ -63,6 +63,6 @@ const dailyExpenseData = [
     },
 ];
 
-const seedDailyExpenses = () => DailyExpense.bulkCreate(dailyExpenseData);
+const seedExpenses = () => Expense.bulkCreate(expenseData);
 
-module.exports = seedDailyExpenses;
+module.exports = seedExpenses;

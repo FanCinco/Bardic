@@ -2,13 +2,12 @@
 const User = require('./User');
 const Place = require('./Place');
 const Comment = require('./Comment');
-const DailyExpense = require('./DailyExpense');
+const Expense = require('./Expense');
 const Day = require('./Day');
 const Post = require('./Post');
 const Story = require('./Story');
 const Trip = require('./Trip');
 const UserTrip = require('./UserTrip');
-const { associations } = require('./User');
 
 // create associations
 // User associations
@@ -94,11 +93,11 @@ Comment.belongsTo(Post, {
 });
 
 // Day associations
-Day.hasMany(DailyExpense, {
+Day.hasMany(Expense, {
   foreignKey: 'day_id'
 });
 
-DailyExpense.belongsTo(Day, {
+Expense.belongsTo(Day, {
   foreignKey: 'day_id'
 });
 
@@ -107,7 +106,7 @@ DailyExpense.belongsTo(Day, {
 
 module.exports = {
   Comment,
-  DailyExpense,
+  Expense,
   Day,
   Place,
   Post,

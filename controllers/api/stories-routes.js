@@ -1,39 +1,37 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Comments, Story, Trips, User, UserTrip } = require('../../models');
 //insert cons for password package
 
 
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Stories.findAll({
+    Story.findAll({
         attributes: [
             'id',
             'title',
             'startingText',
             'trip_id',
             'place_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
+            // 'created_at',
         ],
-        include: [
-            // {
-            //     model: User,
-            //     attributes: ['username']
-            // },
-            {
-                model: Comments,
-                attributes: ['id', 'title', 'startingText', 'trip_id', 'place_id', 'created_at'],
-                include: {
-                  model: User,
-                  attributes: ['username']
-                }
-              },
-        ]
+        // include: [
+        //     // {
+        //     //     model: User,
+        //     //     attributes: ['username']
+        //     // },
+        //     {
+        //         model: Comments,
+        //         attributes: ['id', 'title', 'startingText', 'trip_id', 'place_id', 'created_at'],
+        //         include: {
+        //           model: User,
+        //           attributes: ['username']
+        //         }
+        //       },
+        // ]
         
     })
-        .then(dbStoriesData => res.json(dbStoriesData))
+        .then(dbStoryData => res.json(dbStoryData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -45,7 +43,7 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Stories.findOne({
+    Story.findOne({
         where: {
             id: req.params.id
         },
@@ -55,30 +53,29 @@ router.get('/:id', (req, res) => {
             'startingText',
             'trip_id',
             'place_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.stories_id)'), 'vote_count']
+            // 'created_at',
         ],
-        include: [
-            // {
-            //     model: User,
-            //     attributes: ['username']
-            // },
-            {
-                model: Comments,
-                attributes: ['id', 'title', 'startingText', 'trip_id', 'place_id', 'created_at'],
-                include: {
-                  model: User,
-                  attributes: ['username']
-                }
-              },
-        ]
+        // include: [
+        //     // {
+        //     //     model: User,
+        //     //     attributes: ['username']
+        //     // },
+        //     {
+        //         model: Comments,
+        //         attributes: ['id', 'title', 'startingText', 'trip_id', 'place_id', 'created_at'],
+        //         include: {
+        //           model: User,
+        //           attributes: ['username']
+        //         }
+        //       },
+        // ]
     })
-        .then(dbStoriesData => {
-            if (!dbStoriesData) {
+        .then(dbStoryData => {
+            if (!dbStoryData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbStoriesData);
+            res.json(dbStoryData);
         })
         .catch(err => {
             console.log(err);
@@ -94,13 +91,13 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    Stories.create({
+    Story.create({
         title: req.body.title,
-        startingText: req.body.content,
+        startingText: req.body.startingText,
         trip_id: req.body.trip_id,
         place_id: req.body.place_id,
     })
-        .then(dbStoriesData => res.json(dbStoriesData))
+        .then(dbStoryData => res.json(dbStoryData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -111,10 +108,10 @@ router.post('/', (req, res) => {
 // Update 
 
 router.put('/:id', (req, res) => {
-    Stories.update(
+    Story.update(
         {
             title: req.body.title,
-            startingText: req.body.content,
+            startingText: req.body.startingText,
             trip_id: req.body.trip_id,
             place_id: req.body.place_id,
         },
@@ -124,12 +121,12 @@ router.put('/:id', (req, res) => {
             }
         }
     )
-        .then(dbStoriesData => {
-            if (!dbStoriesData) {
+        .then(dbStoryData => {
+            if (!dbStoryData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbStoriesData);
+            res.json(dbStoryData);
         })
         .catch(err => {
             console.log(err);
@@ -144,17 +141,17 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
-    Stories.destroy({
+    Story.destroy({
         where: {
             id: req.params.id
         }
     })
-        .then(dbStoriesData => {
-            if (!dbStoriesData) {
+        .then(dbStoryData => {
+            if (!dbStoryData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbStoriesData);
+            res.json(dbStoryData);
         })
         .catch(err => {
             console.log(err);
