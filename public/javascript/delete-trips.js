@@ -5,7 +5,7 @@ async function deleteFormHandler(event) {
       window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch(`/api/places/${id}`, {
+    const response = await fetch(`/api/trips/${id}`, {
       method: 'DELETE'
     });
   
@@ -16,4 +16,4 @@ async function deleteFormHandler(event) {
     }
   }
   
-  document.querySelector('.delete-places-btn').addEventListener('click', deleteFormHandler);
+  document.querySelector('.delete-trips-btn').addEventListener('click', deleteFormHandler);

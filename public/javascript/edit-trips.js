@@ -1,15 +1,15 @@
 async function editFormHandler(event) {
     event.preventDefault();
   
-    const name = document.querySelector('input[name="places-name"]').value.trim();
+    const trip_id = document.querySelector('input[name="trips-trip_id"]').value.trim();
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch(`/api/places/${id}`, {
+    const response = await fetch(`/api/trips/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        name,
+        trip_id,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -23,4 +23,4 @@ async function editFormHandler(event) {
     }
   }
   
-  document.querySelector('.edit-places').addEventListener('submit', editFormHandler);
+  document.querySelector('.edit-trips').addEventListener('submit', editFormHandler);

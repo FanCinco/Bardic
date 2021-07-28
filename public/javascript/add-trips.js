@@ -1,13 +1,13 @@
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const name = document.querySelector('input[name="places-name"]').value;
-    const user_id = document.querySelector('input[name="places-user_id"]').value;
+    const trip_id = document.querySelector('input[name="trips-trip_id"]').value;
+    const user_id = document.querySelector('input[name="trips-user_id"]').value;
   
-    const response = await fetch(`/api/places`, {
+    const response = await fetch(`/api/trips`, {
       method: 'POST',
       body: JSON.stringify({
-        name,
+        trip_id,
         user_id
       }),
       headers: {
@@ -22,4 +22,4 @@ async function newFormHandler(event) {
     }
   }
   
-  document.querySelector('.new-place').addEventListener('submit', newFormHandler);
+  document.querySelector('.new-trip').addEventListener('submit', newFormHandler);
