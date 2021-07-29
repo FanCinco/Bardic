@@ -15,38 +15,47 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Bardic</a>
+            <a class="navbar-brand" href="/">Bardic</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-dark">Trips</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Stories</a></li>
-                <li><a href="/expenses" class="nav-link px-2">Expenses</a></li>
+                <li><a href="/places" class="nav-link px-2 link-light">Places</a></li>
+                <li><a href="/stories" class="nav-link px-3 link-light">Stories</a></li>
+                <li><a href="/expenses" class="nav-link px-3 link-light">Expenses</a></li>
             </ul>
-            <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+            {{#unless loggedIn}}
+            <div class="nav nav-pills col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-end">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login / Sign-up</a></li>
             </div>
+            {{/unless}}
+            {{#if loggedIn}}
+            <div class="nav nav-pills col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-end">
+                <button class="nav-link active" type="submit" id="logout">Logout</button>
+            </div>
+            {{/if}}
         </div>
     </nav>
 </header>
 
 <main>
   
-  {{{ body }}}
+{{{ body }}}
 
-  <!-- FOOTER -->
-  <footer class="container">
+</main>
+<!-- FOOTER -->
+<footer class="container">
     <p class="float-end"><a href="#">Back to top</a></p>
     <p>© 2021 Bardic <a href="#">About Us</a> · <a href="#">Contact Information</a></p>
-  </footer>
-</main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
 </body>
 </html>

@@ -11,6 +11,11 @@ const UserTrip = require('./UserTrip');
 
 // create associations
 // User associations
+
+User.hasMany(Story, {
+  foreignKey: 'user_id'
+});
+
 User.hasMany(Post, {
   foreignKey: 'user_id'
 });
@@ -20,6 +25,10 @@ User.hasMany(Comment, {
 });
 
 User.hasMany(UserTrip, {
+  foreignKey: 'user_id'
+});
+
+Story.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
@@ -57,6 +66,13 @@ Trip.hasMany(UserTrip, {
   foreignKey: 'trip_id'
 });
 
+Trip.hasMany(Story, {
+  foreignKey: 'trip_id'
+});
+
+Story.belongsTo(Trip, {
+  foreignKey: 'trip_id'
+});
 
 Trip.hasMany(Day, {
   foreignKey: 'trip_id'
