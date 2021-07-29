@@ -1,40 +1,57 @@
-<div class="row align-items-md-stretch">
-    <div class="col-md-6">
-        <form>
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="Restaurant Name">
-                <label for="descriptionInput">Description</label>
-                <input type="email" class="form-control" id="floatingInput" placeholder="50.00">
-                <label for="expenseInput">Expense</label>
-                {{!-- incorporate dropdown if possible--}}
-                <input type="email" class="form-control" id="floatingInput" placeholder="07/26/2021">
-                <label for="expenseDateInput">Date</label>
-                <button class="btn btn-outline-light" type="button">Submit</button>
+<!-- places section starts  -->
+
+<main class="places" id="places">
+
+    <h1 class="heading">
+        <span>e</span>
+        <span>x</span>
+        <span>p</span>
+        <span>e</span>
+        <span>n</span>
+        <span>s</span>
+        <span>e</span>
+        <span>s</span>
+
+    </h1>
+
+    <div class="row">
+
+        <form action="">
+            <div class="inputBox">
+                <h3> description </h3>
+                <input type="text" placeholder="restaurant name etc...">
             </div>
-        </form>
-    </div>
+            <div class="inputBox">
+                <h3>cost</h3>
+                <input type="number" placeholder="$0.00">
+            </div>
+            <div class="inputBox">
+                <h3>date</h3>
+                <input type="date">
+            </div>
+            <input type="submit" class="btn" value="enter">
 
-    <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3">
-          <h2>Add borders</h2>
-          {{!-- <img src"quickcharts img goes here">  --}}
+            <div class="inputBox">
+                <h3>Expenses</h3>
+                <ul>
+                    <li class="list-item">Hotel stay - $120.00</li>
+                    <li class="list-item">Breakfast - $15.00</li>
+                    <li class="list-item">Lunch - $20.00</li>
+                    <li class="list-item">Dinner - $25.00</li>
+                    <li class="list-item">Movie - $10.00</li>
+                </ul>
+                <br>
+                <p class="list-item">Total - $190.00</p>
         </div>
-    </div>
-</div>
-    
-<div class="h-100 p-5 bg-light border rounded-3">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Select Day
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Day 1</a></li>
-            <li><a class="dropdown-item" href="#">Day 2</a></li>
-            <li><a class="dropdown-item" href="#">Day 3</a></li>
-        </ul>
+            
+        </form>
+
+        <div class="image">
+            <img src="images/chart.png" alt="">
+        </div>
+
     </div>
 
-    <div id="expensesColumn">
-        {{!-- daily expenses for elected date here --}}
-    </div>
-</div>
+</main>
+
+<!-- places section ends -->
