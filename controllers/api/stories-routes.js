@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
             'startingText',
             'trip_id',
             'place_id',
-            // 'created_at',
+            'user_id',
+            'created_at',
         ],
         // include: [
         //     // {
@@ -53,7 +54,8 @@ router.get('/:id', (req, res) => {
             'startingText',
             'trip_id',
             'place_id',
-            // 'created_at',
+            'user_id',
+            'created_at',
         ],
         // include: [
         //     // {
@@ -96,6 +98,7 @@ router.post('/', (req, res) => {
         startingText: req.body.startingText,
         trip_id: req.body.trip_id,
         place_id: req.body.place_id,
+        user_id: req.session.user_id
     })
         .then(dbStoryData => res.json(dbStoryData))
         .catch(err => {
@@ -112,8 +115,9 @@ router.put('/:id', (req, res) => {
         {
             title: req.body.title,
             startingText: req.body.startingText,
-            trip_id: req.body.trip_id,
-            place_id: req.body.place_id,
+            // trip_id: req.body.trip_id,
+            // place_id: req.body.place_id,
+            // user_id: req.body.user_id
         },
         {
             where: {

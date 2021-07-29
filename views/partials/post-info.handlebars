@@ -1,0 +1,13 @@
+<div class="post bg-secondary">
+    <div class="post-content">
+        <p>{{content}}</p>
+    </div>
+    <div class="post-meta">
+        <p>Posted by {{user.firstName}} {{user.lastName}} on {{format_date created_at}}</p>
+    </div>
+    <div class="comments">
+        {{#each comments as |comment| }}
+        {{> comment-info comment }}
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="col-6">
+        <div class="row mt-5">
+        </div>
+        <div class="row">
+            <a href="/stories">Back to Stories</a>
+            <article id="story-{{story.id}}">
+                <div class="initial-story bg-primary">
+                    <div class="story-title input-group">
+                        {{#unless editable}}
+                        <h2>{{story.title}}</h2>
+                        {{/unless}}
+                        {{#if editable}}
+                        <textarea name="story-title" id="story-title" rows="3" class="form-control bg-primary">{{story.title}}</textarea>
+                        {{/if}}
+                    </div>
+                    <div class="story-user">
+                        <p>posted by {{story.user.firstName}} {{story.user.lastName}} on {{format_date story.createdAt}}</p>
+                    </div>
+                    <div class="story-startingText input-group">
+                        {{#unless editable}}
+                        <p>{{story.startingText}}</p>
+                        {{/unless}}
+                        {{#if editable}}
+                        <textarea name="story-startingText" class="form-control bg-primary" id="story-startingText" rows="10">{{story.startingText}}</textarea>
+                        {{/if}}
+                    </div>
+                </div>
+            {{#if editable}}
+            <button type="submit" id="edit-btn">Edit Story</button>
+            <button type="submit" id="delete-btn">Delete Story</button>
+            {{/if}}
+            </article>
+            <div class="posts">
+                {{#if canPost}}
+                <div class="form-control">
+                    <label for="post-content">Anything else to add to this story?</label>
+                    <textarea class="form-control" name="post-content" id="post-content" rows="4"></textarea>
+                    <button type="submit" id="create-post">Create Post</button>
+                </div>
+                {{/if}}
+            {{#each story.posts as |post| }}
+            {{> editable-post-info post }}
+            <div class="comments">
+                {{#if loggedIn}}
+                <div class="form-control">
+                    <label for="comment-content">What do you think about this?</label>
+                    <textarea class="form-control" name="post-content" id="comment-content-{{this.id}}" rows="1"></textarea>
+                    <button type="submit" for="comment-content" id="create-comment-{{this.id}}">Create Comment</button>
+                </div>
+                {{/if}}
+                {{#each comments as |comment| }}
+                {{> comment-info comment }}
+                {{/each}}
+            </div>            
+            {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/javascript/add-comment.js"></script>
+{{#if canPost}}
+<script src="/javascript/add-post.js"></script>
+{{#if canEditAPost}}
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>
+{{/if}}
+{{/if}}
+{{#if editable}}
+<script src="/javascript/edit-story.js"></script>
+<script src="/javascript/delete-story.js"></script>
+{{/if}}
