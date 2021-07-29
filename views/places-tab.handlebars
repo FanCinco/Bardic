@@ -56,7 +56,7 @@
         {{#each Trips as |Trips|}}
         <li>
             {{> trips-info Trips}}
-            <a href="/dashboard/edit/{{trips.id}}" class="edit-trips">Edit Trips</a>
+            <a href="/places-tab/edit/{{trips.id}}" class="edit-trips">Edit Trips</a>
         </li>
         {{/each}}
     </ol>
@@ -71,7 +71,7 @@
         {{#each Places as |Places|}}
         <li>
             {{> places-info Places}}
-            <a href="/dashboard/edit/{{places.id}}" class="edit-places">Edit Places</a>
+            <a href="/places-tab/edit/{{places.id}}" class="edit-places">Edit Places</a>
         </li>
         {{/each}}
     </ol>
