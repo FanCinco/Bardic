@@ -1,0 +1,29 @@
+<article>
+  <a href="/places-tab"> &larr; Back to Trips and Places</a>
+  <h2>
+    Edit Places
+  </h2>
+  <form class="edit-places">
+    <div>
+      <input name="places-name" type="text" value="{{Places.name}}" />
+    </div>
+    <button type="submit">Save Place</button>
+    <button type="button" class="delete-places-btn">Delete Place</button>
+  </form>
+</article>
+
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
+
+{{> comments places.comments}}
+
+<script src="/javascript/edit-places.js"></script>
+<script src="/javascript/delete-places.js"></script>
+<script src="/javascript/comment.js"></script>

@@ -1,0 +1,18 @@
+<article onclick="location.href='/stories/{{id}}'">
+    <div class="initial-story bg-primary">
+        <div class="story-title">
+            <h2>{{title}}</h2>
+        </div>
+        <div class="story-user">
+            <p>posted by {{user.firstName}} {{user.lastName}} on {{format_date createdAt}}</p>
+        </div>
+        <div class="story-startingText">
+            <p>{{startingText}}</p>
+        </div>
+    </div>
+</article>
+<div class="posts">
+{{#each posts as |post| }}
+{{> post-info post }}
+{{/each}}
+</div>
