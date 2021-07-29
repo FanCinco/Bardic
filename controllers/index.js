@@ -6,7 +6,7 @@ const storiesRoutes = require('./storiesTab-routes.js');
 const placesRoutes = require('./placesTab-routes.js');
 const expensesRoutes = require('./expensesTab-routes.js');
 
-router.use('/homepage', homePageRoutes);
+router.use('/', homePageRoutes);
 router.use('/stories', storiesRoutes);
 router.use('/places', placesRoutes);
 router.use('/expenses', expensesRoutes);

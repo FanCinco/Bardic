@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Comment, Post, Story, Trip, User, UserTrip } = require('../../models');
 //insert cons for password package
 
 // get all users
@@ -22,13 +22,14 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model: Comments,
+        model: Comment,
         attributes: [
           'id',
           'content',
           'post_id',
           'user_id',
-          'created_at']
+          'created_at'
+        ]
       },
       // {
       //   model: Expenses,
@@ -55,48 +56,31 @@ router.get('/:id', (req, res) => {
       //     'created_at']
       // },
       {
-        model: Posts,
+        model: Post,
         attributes: [
           'id',
           'content',
           'user_id',
           'story_id',
-          'created_at']
+          'created_at'
+        ]
       },
-      // {
-      //   model: Stories,
-      //   attributes: [
-      //     'id',
-      //     'title',
-      //     'starting text',
-      //     'trip_id',
-      //     'place_id',
-      //     'created_at']
-      // },
-      // {
-      //   model: User,
-      //   attributes: [
-      //     'id',
-      //     'firstName',
-      //     'lastName',
-      //     'email',
-      //     'password',
-      //     'created_at']
-      // },
       {
         model: UserTrip,
         attributes: [
           'id',
           'user_id',
           'trip_id',
-          'created_at'],
+          'created_at'
+        ],
         include: {
-          model: Trips,
+          model: Trip,
           attributes: [
             'id',
             'title',
             'place_id',
-            'created_at']
+            'created_at'
+          ]
         },
       },
     ]
@@ -119,14 +103,15 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 
   User.create({
-    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password
   })
     .then(dbUserData => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
+        req.session.email = dbUserData.email;
         req.session.loggedIn = true;
 
         res.json(dbUserData);
@@ -141,7 +126,10 @@ router.post('/', (req, res) => {
 //login
 
 router.post('/login', (req, res) => {
-
+  if (req.session.loggedIn) {
+    res.json({ message: 'Already signed in! '});
+    return;
+  }
   User.findOne({
     where: {
       email: req.body.email
@@ -161,7 +149,7 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
+      req.session.email = dbUserData.email;
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });

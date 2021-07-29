@@ -1,14 +1,13 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Trip } = require('../../models');
 //insert cons for password package
 
 
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Trips.findAll()
-        .then(dbTripsData => res.json(dbTripsData))
+    Trip.findAll()
+        .then(dbTripData => res.json(dbTripData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -20,13 +19,13 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Trips.findOne()
-        .then(dbTripsData => {
-            if (!dbTripsData) {
+    Trip.findOne()
+        .then(dbTripData => {
+            if (!dbTripData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbTripsData);
+            res.json(dbTripData);
         })
         .catch(err => {
             console.log(err);
@@ -42,11 +41,11 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    Trips.create({
+    Trip.create({
         title: req.body.title,
         place_id: req.body.place_id
     })
-        .then(dbTripsData => res.json(dbTripsData))
+        .then(dbTripData => res.json(dbTripData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -57,7 +56,7 @@ router.post('/', (req, res) => {
 // Update 
 
 router.put('/:id', (req, res) => {
-    Trips.update(
+    Trip.update(
         {
             title: req.body.title,
             place_id: req.body.place_id
@@ -68,12 +67,12 @@ router.put('/:id', (req, res) => {
             }
         }
     )
-        .then(dbTripsData => {
-            if (!dbTripsData) {
+        .then(dbTripData => {
+            if (!dbTripData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbTripsData);
+            res.json(dbTripData);
         })
         .catch(err => {
             console.log(err);
@@ -88,17 +87,17 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
-    Trips.destroy({
+    Trip.destroy({
         where: {
             id: req.params.id
         }
     })
-        .then(dbTripsData => {
-            if (!dbTripsData) {
+        .then(dbTripData => {
+            if (!dbTripData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbTripsData);
+            res.json(dbTripData);
         })
         .catch(err => {
             console.log(err);

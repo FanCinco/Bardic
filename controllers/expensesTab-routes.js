@@ -1,25 +1,20 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Expense } = require('../models');
 //insert cons for password package
 
 
-//get all expenses 
+//get all Expense 
 
 router.get('/', (req, res) => {
     console.log(req.session);
     console.log('======================');
-    Expenses.findAll({
-        // where: {
-        //   user_id: req.session.user_id
-        // },
+    Expense.findAll({
         attributes: [
             'id',
             'description',
             'cost',
             'day_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE expenses.id = vote.expenses_id)'), 'vote_count']
+            // 'created_at',
         ],
         // include: [
         //     {
@@ -28,8 +23,8 @@ router.get('/', (req, res) => {
         //     }
         // ]
     })
-        .then(dbExpensesData => {
-            const expenses = dbExpensesData.map(expenses => expenses.get({ plain: true }));
+        .then(dbExpenseData => {
+            const expenses = dbExpenseData.map(expense => expense.get({ plain: true }));
             res.render('expenses', { expenses, loggedIn: true });
         })
         .catch(err => {
@@ -38,17 +33,16 @@ router.get('/', (req, res) => {
         });
 });
 
-// edit expenses
+// edit Expense
 
 router.get('/edit/:id', (req, res) => {
-    Expenses.findByPk(req.params.id, {
+    Expense.findByPk(req.params.id, {
         attributes: [
             'id',
             'description',
             'cost',
             'day_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
+            // 'created_at',
         ],
         // include: [
         //     {
@@ -57,11 +51,11 @@ router.get('/edit/:id', (req, res) => {
         //     }
         // ]
     })
-        .then(dbExpensesData => {
-            if (dbExpensesData) {
-                const expenses = dbExpensesData.get({ plain: true });
+        .then(dbExpenseData => {
+            if (dbExpenseData) {
+                const expense = dbExpenseData.get({ plain: true });
 
-                res.render('edit-story', { expenses, loggedIn: true });
+                res.render('edit-story', { expense, loggedIn: true });
             } else {
                 res.status(404).end();
             }
@@ -70,16 +64,6 @@ router.get('/edit/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
-
-// router.get('/login', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
-
-//   res.render('login');
-// });
 
 module.exports = router;
 

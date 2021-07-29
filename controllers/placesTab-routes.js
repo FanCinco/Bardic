@@ -1,28 +1,23 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Place } = require('../models');
 //insert cons for password package
 
 
-//get all places 
+//get all Place 
 
 router.get('/', (req, res) => {
   console.log(req.session);
   console.log('======================');
-  Places.findAll({
-    // where: {
-    //   user_id: req.session.user_id
-    // },
+  Place.findAll({
     attributes: [
       'id',
       'name',
-      'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE places.id = vote.places_id)'), 'vote_count']
+      // 'created_at',
     ],
     
   })
-    .then(dbPlacesData => {
-      const places = dbPlacesData.map(places => places.get({ plain: true }));
+    .then(dbPlaceData => {
+      const places = dbPlaceData.map(place => place.get({ plain: true }));
       res.render('places', { places, loggedIn: true });
     })
     .catch(err => {
@@ -32,23 +27,22 @@ router.get('/', (req, res) => {
 });
 
 
-// edit places 
+// edit Place 
 
 router.get('/edit/:id', (req, res) => {
-  Places.findByPk(req.params.id, {
+  Place.findByPk(req.params.id, {
     attributes: [
       'id',
       'name',
-      'created_at',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE placesid = vote.places_id)'), 'vote_count']
+      // 'created_at',
     ],
     
   })
-    .then(dbPlacesData => {
-      if (dbPlacesData) {
-        const places = dbPlacesData.get({ plain: true });
+    .then(dbPlaceData => {
+      if (dbPlaceData) {
+        const place = dbPlaceData.get({ plain: true });
 
-        res.render('edit-places', { places, loggedIn: true });
+        res.render('edit-place', { place, loggedIn: true });
       } else {
         res.status(404).end();
       }
@@ -57,16 +51,6 @@ router.get('/edit/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
-
-// router.get('/login', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
-
-//   res.render('login');
-// });
 
 module.exports = router;
 

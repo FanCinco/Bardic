@@ -1,37 +1,38 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Comment, Post, Stories, User } = require('../../models');
 //insert cons for password package
 
 
 // get all 
 router.get('/', (req, res) => {
     console.log('======================');
-    Posts.findAll({
+    Post.findAll({
         attributes: [
             'id',
             'content',
             'user_id',
             'story_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE posts.id = vote.posts_id)'), 'vote_count']
+            // 'created_at',
         ],
         include: [
             {
                 model: User,
-                attributes: ['username']
+                attributes: ['email']
             },
             {
-                model: Comments,
-                attributes: ['id', 'content', 'user_id', 'story_id', 'created_at'],
+                model: Comment,
+                attributes: [
+                    'id', 'content', 'user_id', 'post_id', 
+                    // 'created_at'
+                ],
                 include: {
                   model: User,
-                  attributes: ['username']
+                  attributes: ['email']
                 }
               },
         ]
     })
-        .then(dbPostsData => res.json(dbPostsData))
+        .then(dbPostData => res.json(dbPostData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -43,7 +44,7 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Posts.findOne({
+    Post.findOne({
         where: {
             id: req.params.id
         },
@@ -52,30 +53,32 @@ router.get('/:id', (req, res) => {
             'content',
             'user_id',
             'story_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE posts.id = vote.posts_id)'), 'vote_count']
+            // 'created_at',
+            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE Post.id = vote.Post_id)'), 'vote_count']
         ],
         include: [
             {
                 model: User,
-                attributes: ['username']
+                attributes: ['email']
             },
             {
-                model: Comments,
-                attributes: ['id', 'content', 'user_id', 'story_id', 'created_at'],
+                model: Comment,
+                attributes: ['id', 'content', 'user_id', 'post_id',
+                //  'created_at'
+                ],
                 include: {
                   model: User,
-                  attributes: ['username']
+                  attributes: ['email']
                 }
               },
         ]
     })
-        .then(dbPostsData => {
-            if (!dbPostsData) {
+        .then(dbPostData => {
+            if (!dbPostData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbPostsData);
+            res.json(dbPostData);
         })
         .catch(err => {
             console.log(err);
@@ -91,12 +94,12 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    Posts.create({
+    Post.create({
         content: req.body.content,
         user_id: req.session.user_id,
         story_id: req.body.story_id
     })
-        .then(dbPostsData => res.json(dbPostsData))
+        .then(dbPostData => res.json(dbPostData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -107,7 +110,7 @@ router.post('/', (req, res) => {
 // Update 
 
 router.put('/:id', (req, res) => {
-    Posts.update(
+    Post.update(
         {
             content: req.body.content
         },
@@ -117,12 +120,12 @@ router.put('/:id', (req, res) => {
             }
         }
     )
-        .then(dbPostsData => {
-            if (!dbPostsData) {
+        .then(dbPostData => {
+            if (!dbPostData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbPostsData);
+            res.json(dbPostData);
         })
         .catch(err => {
             console.log(err);
@@ -137,17 +140,17 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
-    Posts.destroy({
+    Post.destroy({
         where: {
             id: req.params.id
         }
     })
-        .then(dbPostsData => {
-            if (!dbPostsData) {
+        .then(dbPostData => {
+            if (!dbPostData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
                 return;
             }
-            res.json(dbPostsData);
+            res.json(dbPostData);
         })
         .catch(err => {
             console.log(err);
