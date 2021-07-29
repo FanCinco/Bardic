@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
                             'content',
                             'user_id',
                             'post_id',
-                            // 'created_at'
+                            'created_at'
                         ],
                         include: {
                             model: User,
@@ -52,7 +52,7 @@ router.get('/', (req, res) => {
             const stories = dbStoryData.map(story => story.get({ plain: true }));
             
             if (!req.session.loggedIn) {
-                res.render('stories', { stories, loggedIn: true });
+                res.render('stories', { stories, loggedIn: req.session.loggedIn });
                 return;
             }
             User.findOne({
@@ -84,7 +84,7 @@ router.get('/', (req, res) => {
                 .then(dbUserData => {
                     const user = dbUserData.get({ plain: true });
 
-                    res.render('stories', { stories, user, loggedIn: true });
+                    res.render('stories', { stories, user, loggedIn: req.session.loggedIn });
                 })
                 .catch(err => {
                     console.log(err);
@@ -130,7 +130,7 @@ router.get('/:id', (req, res) => {
                             'content',
                             'user_id',
                             'post_id',
-                            // 'created_at'
+                            'created_at'
                         ],
                         include: {
                             model: User,
@@ -148,6 +148,10 @@ router.get('/:id', (req, res) => {
         .then(dbStoryData => {
             const story = dbStoryData.get({ plain: true });
 
+            if (!req.session.loggedIn) {
+                res.render('single-story', { story, loggedIn: req.session.loggedIn });
+                return;
+            }
             User.findOne({
                 where: {
                     id: req.session.user_id
@@ -178,8 +182,16 @@ router.get('/:id', (req, res) => {
                 const user = dbUserData.get({ plain: true });
                 const editable = user.id === story.user_id;
                 const canPost = user.usertrips.some(usertrip => story.trip_id === usertrip.trip_id);
+                story.posts.forEach(post => {
+                    if (post.user_id === user.id) {
+                        post.canEdit = true;
+                        return;
+                    }
+                    post.canEdit = false;
+                });
+                const canEditAPost = story.posts.some(post => post.canEdit);
 
-                res.render('single-story', { story, user, editable, canPost, loggedIn: true });
+                res.render('single-story', { story, user, editable, canPost, canEditAPost, loggedIn: req.session.loggedIn });
             })
             .catch(err => {
                 console.log(err);
@@ -191,39 +203,6 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-
-// edit Story
-
-// router.get('/edit/:id', (req, res) => {
-//     Story.findByPk(req.params.id, {
-//         attributes: [
-//             'id',
-//             'title',
-//             'startingText',
-//             'trip_id',
-//             'place_id',
-//             // 'created_at',
-//         ],
-//         // include: [
-//         //     {
-//         //         model: User,
-//         //         attributes: ['username']
-//         //     }
-//         // ]
-//     })
-//         .then(dbStoryData => {
-//             if (dbStoryData) {
-//                 const story = dbStoryData.get({ plain: true });
-
-//                 res.render('edit-story', { story, loggedIn: true });
-//             } else {
-//                 res.status(404).end();
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).json(err);
-//         });
-// });
 
 module.exports = router;
 

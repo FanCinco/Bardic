@@ -1,0 +1,28 @@
+<div class="post bg-secondary">
+    <div class="post-content">
+        {{#unless this.canEdit}}
+        <p>{{content}}</p>
+        {{/unless}}
+        {{#if this.canEdit}}
+        <textarea name="post-content" id="post-content-{{this.id}}" rows="3" class="form-control bg-secondary">{{content}}</textarea>
+        <div class="d-flex">
+            <button type="submit" class="edit-post-btn" id="edit-post-btn-{{this.id}}">Edit Post</button>
+            <button type="submit" class="delete-post-btn" id="delete-post-btn-{{this.id}}">Delete Post</button>
+        </div>
+        {{/if}}
+    </div>
+    <div class="post-meta">
+        <p>Posted by {{user.firstName}} {{user.lastName}} on {{format_date created_at}}</p>
+    </div>
+    {{!-- <div class="comments">
+        
+        <div class="form-control">
+            <label for="comment-content">What do you think about this?</label>
+            <textarea class="form-control" name="post-content" id="comment-content-{{this.id}}" rows="1"></textarea>
+            <button type="submit" for="comment-content" id="create-comment-{{this.id}}">Create Comment</button>
+        </div>
+        {{#each comments as |comment| }}
+        {{> comment-info comment }}
+        {{/each}}
+    </div> --}}
+</div>

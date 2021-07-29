@@ -2,6 +2,7 @@
     <div class="col-6">
         <div class="row mt-5">
         </div>
+        {{#if loggedIn}}
         <div class="row mt-5">
             <form class="story-form d-flex flex-column align-items-start" id="{{user.id}}">
                 <div id="title">
@@ -24,6 +25,7 @@
                 <button>Create Story</button>
             </form>
         </div>
+        {{/if}}
         <div class="row">
             {{#each stories as |story| }}
             {{> story-info story }}
@@ -31,4 +33,6 @@
         </div>
     </div>
 </div>
+{{#if loggedIn}}
 <script src="/javascript/add-story.js"></script>
+{{/if}}

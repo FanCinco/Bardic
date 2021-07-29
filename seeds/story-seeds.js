@@ -8,7 +8,7 @@ const storyData = [
         trip_id: 1,
         place_id: 1,
         user_id: 1,
-        created_at: new Date('2020-03-20 16:12:03')
+        created_at: new Date('March 20th, 2020 16:12:03')
     },
     {
         title: 'Park Ranger, or Park Ghost?',
@@ -16,7 +16,7 @@ const storyData = [
         trip_id: 1,
         place_id: 1,
         user_id: 2,
-        created_at: new Date('2020-03-20 16:12:03')
+        created_at: new Date('March 20th, 2020 16:12:03')
     },
     {
         title: 'Rocked out at the concert!',
@@ -24,7 +24,7 @@ const storyData = [
         trip_id: 2,
         place_id: 2,
         user_id: 3,
-        created_at: new Date('2020-03-20 16:12:03')
+        created_at: new Date('March 20th, 2020 16:12:03')
     },
     {
         title: 'Saw mummies for the first time.',
@@ -32,7 +32,7 @@ const storyData = [
         trip_id: 3,
         place_id: 3,
         user_id: 4,
-        created_at: new Date('2020-03-20 16:12:03')
+        created_at: new Date('March 20th, 2020 16:12:03')
     }
 ];
 
