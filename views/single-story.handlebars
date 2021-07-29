@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="col-6">
+        <div class="row mt-5">
+        </div>
+        <div class="row">
+            <article id="story-{{story.id}}">
+                <div class="initial-story bg-primary">
+                    <div class="story-title input-group">
+                        {{#unless editable}}
+                        <h2>{{story.title}}</h2>
+                        {{/unless}}
+                        {{#if editable}}
+                        <input type="text" value="{{story.title}}" name="story-title" class="form-control" id="story-title">
+                        {{/if}}
+                    </div>
+                    <div class="story-user">
+                        <p>posted by {{story.user.firstName}} {{story.user.lastName}} on {{format_date story.createdAt}}</p>
+                    </div>
+                    <div class="story-startingText input-group">
+                        {{#unless editable}}
+                        <p>{{story.startingText}}</p>
+                        {{/unless}}
+                        {{#if editable}}
+                        <textarea name="story-startingText" class="form-control" id="story-startingText" rows="10">{{story.startingText}}</textarea>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="posts">
+                {{#each posts as |post| }}
+                {{> post-info post }}
+                {{/each}}
+                </div>
+            {{#if editable}}
+            <button type="submit" id="edit-btn">Edit Story</button>
+            <button type="submit" id="delete-btn">Delete Story</button>
+            {{/if}}
+            </article>
+            <div class="posts">
+                {{#if canPost}}
+                <div class="form-control">
+                    <label for="post-content">Anything else to add to this story?</label>
+                    <textarea class="form-control" name="post-content" id="post-content" rows="4"></textarea>
+                    <button type="submit" id="create-post">Create Post</button>
+                </div>
+                {{/if}}
+            {{#each story.posts as |post| }}
+            {{> post-info post }}
+            {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+{{#if canPost}}
+<script src="/javascript/add-post.js"></script>
+{{/if}}
+{{#if editable}}
+<script src="/javascript/edit-story.js"></script>
+<script src="/javascript/delete-story.js"></script>
+{{/if}}

@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
           'content',
           'post_id',
           'user_id',
-          'created_at'
+          // 'created_at'
         ]
       },
       // {
@@ -62,7 +62,7 @@ router.get('/:id', (req, res) => {
           'content',
           'user_id',
           'story_id',
-          'created_at'
+          // 'created_at'
         ]
       },
       {
@@ -71,7 +71,7 @@ router.get('/:id', (req, res) => {
           'id',
           'user_id',
           'trip_id',
-          'created_at'
+          // 'created_at'
         ],
         include: {
           model: Trip,
@@ -79,7 +79,7 @@ router.get('/:id', (req, res) => {
             'id',
             'title',
             'place_id',
-            'created_at'
+            // 'created_at'
           ]
         },
       },

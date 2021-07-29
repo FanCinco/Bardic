@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
             'content',
             'user_id',
             'story_id',
-            // 'created_at',
+            'created_at',
         ],
         include: [
             {
@@ -53,8 +53,7 @@ router.get('/:id', (req, res) => {
             'content',
             'user_id',
             'story_id',
-            // 'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE Post.id = vote.Post_id)'), 'vote_count']
+            'created_at',
         ],
         include: [
             {

@@ -1,37 +1,95 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Comments, Expenses, Day, Places, Posts, Stories, Trips, User, UserTrip } = require('../models');
+const { Comment, Place, Post, Story, Trip, User, UserTrip } = require('../models');
 //insert cons for password package
 
 
-//get all stories 
+//get all Story 
 
 router.get('/', (req, res) => {
     console.log(req.session);
     console.log('======================');
-    Stories.findAll({
-        // where: {
-        //   user_id: req.session.user_id
-        // },
-        attributes: [
-            'id',
-            'title',
-            'startingText',
-            'trip_id',
-            'place_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE place.id = vote.place_id)'), 'vote_count']
-        ],
+    Story.findAll({
+        order: [['created_at', 'DESC']],
         include: [
             {
                 model: User,
-                attributes: ['username']
+                attributes: ['firstName', 'lastName']
+            },
+            {
+                model: Post,
+                attributes: [
+                    'id',
+                    'content',
+                    'story_id',
+                    'user_id',
+                    'created_at'
+                ],
+                order: [['created_at', 'DESC']],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['firstName', 'lastName']
+                    },
+                    {
+                        model: Comment,
+                        attributes: [
+                            'id',
+                            'content',
+                            'user_id',
+                            'post_id',
+                            // 'created_at'
+                        ],
+                        include: {
+                            model: User,
+                            attributes: ['firstName', 'lastName']
+                        }
+                    }
+                ]
             }
         ]
     })
-        .then(dbStoriesData => {
-            const stories = dbStoriesData.map(stories => stories.get({ plain: true }));
-            res.render('stories', { stories, loggedIn: true });
+        .then(dbStoryData => {
+            const stories = dbStoryData.map(story => story.get({ plain: true }));
+            
+            if (!req.session.loggedIn) {
+                res.render('stories', { stories, loggedIn: true });
+                return;
+            }
+            User.findOne({
+                where: {
+                    id: req.session.user_id
+                },
+                attributes: { exclude: 'password' },
+                include: [
+                    {
+                      model: UserTrip,
+                      attributes: [
+                        'id',
+                        'user_id',
+                        'trip_id',
+                        // 'created_at'
+                      ],
+                      include: {
+                        model: Trip,
+                        attributes: [
+                          'id',
+                          'title',
+                          'place_id',
+                          // 'created_at'
+                        ]
+                      },
+                    },
+                  ]
+            })
+                .then(dbUserData => {
+                    const user = dbUserData.get({ plain: true });
+
+                    res.render('stories', { stories, user, loggedIn: true });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err);
+                }); 
         })
         .catch(err => {
             console.log(err);
@@ -39,48 +97,132 @@ router.get('/', (req, res) => {
         });
 });
 
-// edit stories
-
-router.get('/edit/:id', (req, res) => {
-    Stories.findByPk(req.params.id, {
-        attributes: [
-            'id',
-            'title',
-            'startingText',
-            'trip_id',
-            'place_id',
-            'created_at',
-            //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE stories.id = vote.storiesid)'), 'vote_count']
-        ],
+// get single story
+router.get('/:id', (req, res) => {
+    Story.findOne({
+        where: {
+            id: req.params.id
+        },
         include: [
             {
                 model: User,
-                attributes: ['username']
+                attributse: ['firstName', 'lastName']
+            },
+            {
+                model: Post,
+                attributes: [
+                    'id',
+                    'content',
+                    'story_id',
+                    'user_id',
+                    'created_at'
+                ],
+                order: [['created_at', 'DESC']],
+                include: [
+                    {
+                        model: User,
+                        attributes: ['firstName', 'lastName']
+                    },
+                    {
+                        model: Comment,
+                        attributes: [
+                            'id',
+                            'content',
+                            'user_id',
+                            'post_id',
+                            // 'created_at'
+                        ],
+                        include: {
+                            model: User,
+                            attributes: ['firstName', 'lastName']
+                        }
+                    }
+                ]
+            },
+            {
+                model: Trip,
+                attributse: ['id', 'title']
             }
         ]
     })
-        .then(dbStoriesData => {
-            if (dbStoriesData) {
-                const stories = dbStoriesData.get({ plain: true });
+        .then(dbStoryData => {
+            const story = dbStoryData.get({ plain: true });
 
-                res.render('edit-stories', { stories, loggedIn: true });
-            } else {
-                res.status(404).end();
-            }
+            User.findOne({
+                where: {
+                    id: req.session.user_id
+                },
+                attributes: { exclude: 'password' },
+                include: [
+                    {
+                      model: UserTrip,
+                      attributes: [
+                        'id',
+                        'user_id',
+                        'trip_id',
+                        // 'created_at'
+                      ],
+                      include: {
+                        model: Trip,
+                        attributes: [
+                          'id',
+                          'title',
+                          'place_id',
+                          // 'created_at'
+                        ]
+                      },
+                    },
+                  ]
+            })
+            .then(dbUserData => {
+                const user = dbUserData.get({ plain: true });
+                const editable = user.id === story.user_id;
+                const canPost = user.usertrips.some(usertrip => story.trip_id === usertrip.trip_id);
+
+                res.render('single-story', { story, user, editable, canPost, loggedIn: true });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
         })
         .catch(err => {
+            console.log(err);
             res.status(500).json(err);
         });
 });
 
+// edit Story
 
-// router.get('/login', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
+// router.get('/edit/:id', (req, res) => {
+//     Story.findByPk(req.params.id, {
+//         attributes: [
+//             'id',
+//             'title',
+//             'startingText',
+//             'trip_id',
+//             'place_id',
+//             // 'created_at',
+//         ],
+//         // include: [
+//         //     {
+//         //         model: User,
+//         //         attributes: ['username']
+//         //     }
+//         // ]
+//     })
+//         .then(dbStoryData => {
+//             if (dbStoryData) {
+//                 const story = dbStoryData.get({ plain: true });
 
-//   res.render('login');
+//                 res.render('edit-story', { story, loggedIn: true });
+//             } else {
+//                 res.status(404).end();
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).json(err);
+//         });
 // });
 
 module.exports = router;

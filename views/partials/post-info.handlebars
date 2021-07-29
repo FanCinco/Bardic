@@ -1,0 +1,18 @@
+<div class="post bg-secondary">
+    <div class="post-content">
+        <p>{{content}}</p>
+    </div>
+    <div class="post-meta">
+        <p>Posted by {{user.firstName}} {{user.lastName}} on {{format_date created_at}}</p>
+    </div>
+    <div class="comments">
+        <div class="form-control">
+            <label for="comment-content">What do you think about this?</label>
+            <textarea class="form-control" name="post-content" id="comment-content" rows="1"></textarea>
+            <button type="submit" for="comment-content" id="create-comment">Create Comment</button>
+        </div>
+        {{#each comments as |comment| }}
+        {{> comment-info comment }}
+        {{/each}}
+    </div>
+</div>
