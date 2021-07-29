@@ -1,7 +1,7 @@
 async function editFormHandler(event) {
     event.preventDefault();
   
-    const trip_id = document.querySelector('input[name="trips-trip_id"]').value.trim();
+    const title = document.querySelector('input[name="trips-title"]').value.trim();
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
@@ -9,7 +9,8 @@ async function editFormHandler(event) {
     const response = await fetch(`/api/trips/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        trip_id,
+        title,
+        place_id,
       }),
       headers: {
         'Content-Type': 'application/json'

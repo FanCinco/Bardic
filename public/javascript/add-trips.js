@@ -1,14 +1,14 @@
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const trip_id = document.querySelector('input[name="trips-trip_id"]').value;
-    const user_id = document.querySelector('input[name="trips-user_id"]').value;
+    const title = document.querySelector('input[name="trips-title"]').value;
+    const place_id = document.querySelector('input[name="trips-place_id"]').value;
   
     const response = await fetch(`/api/trips`, {
       method: 'POST',
       body: JSON.stringify({
-        trip_id,
-        user_id
+        title,
+        place_id
       }),
       headers: {
         'Content-Type': 'application/json'
