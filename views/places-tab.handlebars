@@ -1,0 +1,98 @@
+<body>
+    
+<!-- nav -->
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Bardic</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-dark">Trips</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Stories</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Expenses</a></li>
+            </ul>
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <button type="button" class="btn btn-primary">Sign-up</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- CONTENT -->
+
+
+<section>
+  <h2>Create New Trip</h2>
+
+  <form class="new-trip">
+    <div>
+      <label for="trips-title">Trips</label>
+      <input type="text" id="trips-title" name="trips-title" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+<section>
+  <h2>Create New Place</h2>
+
+  <form class="new-place">
+    <div>
+      <label for="places-name">Name</label>
+      <input type="text" id="places-name" name="places-name" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+
+{{#if Trips.length}}
+<section>
+    <h2>Your Trips</h2>
+    <ol>
+        {{#each Trips as |Trips|}}
+        <li>
+            {{> trips-info Trips}}
+            <a href="/places-tab/edit/{{trips.id}}" class="edit-trips">Edit Trips</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+
+{{#if Places.length}}
+<section>
+    <h2>Your Places</h2>
+    <ol>
+        {{#each Places as |Places|}}
+        <li>
+            {{> places-info Places}}
+            <a href="/places-tab/edit/{{places.id}}" class="edit-places">Edit Places</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+
+
+<!-- FOOTER -->
+  <footer class="container">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>© 2021 Bardic <a href="#">About Us</a> · <a href="#">Contact Information</a></p>
+  </footer>
+</main>
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/javascript/add-trips.js"></script>
+    <script src="/javascript/add-places.js"></script>
+</body>
+</html>
+
+
+
+
+
