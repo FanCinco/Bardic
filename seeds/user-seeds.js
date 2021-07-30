@@ -5,25 +5,25 @@ const userData = [
         firstName: 'George',
         lastName: 'Michael',
         email: 'gomich@gmail.com',
-        password: '$2b$12$0dHi6mBSkMU3mkWEjjPiz.YzOwUc9RHCWvhq0dJE8eALahdUO0ubW'
+        password: "$2b$12$w4D52/RpJItUDjyG9I5txO1yr3HSZZvcxjl6EiXWdneW3BptJC5BW"
     },
     {
         firstName: 'Havier',
         lastName: 'Martinez',
         email: 'hart@yahoo.ca',
-        password: '$2b$12$0jgWhrq52d.nhtYlARflH.E/ueMDEbIo0Sj5tlu1Eipv8pVdCCVj.'
+        password: '$2b$12$w4D52/RpJItUDjyG9I5txO1yr3HSZZvcxjl6EiXWdneW3BptJC5BW'
     },
     {
         firstName: 'Miranda',
         lastName: 'Shumacher',
         email: 'schum@hotmail.com',
-        password: '$2b$12$TSiJ.VI/48UcfHMnJO840.ea9YrjkmzdbZewScbka3VWi9HpwrUEW'
+        password: '$2b$12$w4D52/RpJItUDjyG9I5txO1yr3HSZZvcxjl6EiXWdneW3BptJC5BW'
     },
     {
         firstName: 'Tina',
         lastName: 'Bernette',
         email: 'pyrrhic@outlook.com',
-        password: '$2b$12$XqWO8yhw9hOJfoduT9KUseNVzYBEjqz29XLLYWeyEbgDV3QQ6FhY6'
+        password: '$2b$12$w4D52/RpJItUDjyG9I5txO1yr3HSZZvcxjl6EiXWdneW3BptJC5BW'
     }
 ];
 
