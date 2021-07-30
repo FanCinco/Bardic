@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bardic</title>
     
-
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -26,13 +25,13 @@
         <a href="/#">home</a>
         <a href="/places">places</a>
         <a href="/expenses">expenses</a>
-        <a href="/gallery">gallery</a>
         <a href="/stories">stories</a>
+        {{!-- <a href="/gallery">gallery</a> --}}
     </nav>
 
     <div class="icons">
         <i class="fas fa-user" id="login-btn"></i>
-        <i class="fas fa-sign-out-alt" id="search-btn"></i>
+        <i class="fas fa-sign-out-alt" id="logout-btn"></i>
     </div>
 
 </header>
@@ -43,17 +42,36 @@
 
 <div class="login-form-container">
 
-    <i class="fas fa-times" id="form-close"></i>
+    <i class="fas fa-times" id="login-form-close"></i>
 
     <form action="">
         <h3>login</h3>
         <input type="email" class="box" placeholder="enter your email">
         <input type="password" class="box" placeholder="enter your password">
-        <input type="submit" value="login now" class="btn">
+            <input type="submit" value="login now" class="btn">
+        <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+        <p>forget password? <a href="#">click here</a></p>
+        <p>don't have and account? <a id="register-btn" href="#">register now</a></p>
+    </form>
+
+</div>
+
+{{!-- register form container --}}
+
+<div class="register-form-container">
+
+    <i class="fas fa-times" id="register-form-close"></i>
+
+    <form action="">
+        <h3>register</h3>
+        <input type="first-name" class="box" placeholder="enter your first name">
+        <input type="last-name" class="box" placeholder="enter your last name">
+        <input type="email" class="box" placeholder="enter your email">
+        <input type="password" class="box" placeholder="enter your password">
+        <input type="submit" value="register now" class="btn">
         <input type="checkbox" id="remember">
         <label for="remember">remember me</label>
-        <p>forget password? <a href="#">click here</a></p>
-        <p>don't have and account? <a href="#">register now</a></p>
     </form>
 
 </div>
@@ -84,7 +102,7 @@
             <a href="#">home</a>
             <a href="#">places</a>
             <a href="#">expenses</a>
-            <a href="#">gallery</a>
+            {{!-- <a href="#">gallery</a> --}}
             <a href="#">posts</a>
         </div>
         <div class="box">
@@ -100,7 +118,6 @@
     <h1 class="credit"> created by <span> Team 3 </span> | all rights reserved! </h1>
 
 </section>
-
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 

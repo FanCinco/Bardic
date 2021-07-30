@@ -1,18 +1,20 @@
-let searchBtn = document.querySelector('#search-btn');
-let searchBar = document.querySelector('.search-bar-container');
-let formBtn = document.querySelector('#login-btn');
+let logoutBtn = document.querySelector('#logout-btn');
+let loginBtn = document.querySelector('#login-btn');
+let registerBtn = document.querySelector('#register-btn');
 let loginForm = document.querySelector('.login-form-container');
-let formClose = document.querySelector('#form-close');
+let registerForm = document.querySelector('.register-form-container');
+let loginFormClose = document.querySelector('#login-form-close');
+let registerFormClose = document.querySelector('#register-form-close');
 let menu = document.querySelector('#menu-bar');
 let navbar = document.querySelector('.navbar');
 let videoBtn = document.querySelectorAll('.vid-btn');
 
 window.onscroll = () =>{
-    searchBtn.classList.remove('fa-times');
-    searchBar.classList.remove('active');
+    logoutBtn.classList.remove('fa-times');
     menu.classList.remove('fa-times');
     navbar.classList.remove('active');
     loginForm.classList.remove('active');
+    registerForm.classList.remove('active');
 }
 
 menu.addEventListener('click', () =>{
@@ -20,17 +22,25 @@ menu.addEventListener('click', () =>{
     navbar.classList.toggle('active');
 });
 
-searchBtn.addEventListener('click', () =>{
-    searchBtn.classList.toggle('fa-times');
-    searchBar.classList.toggle('active');
+logoutBtn.addEventListener('click', () =>{
+    logoutBtn.classList.toggle('fa-times');
 });
 
-formBtn.addEventListener('click', () =>{
+loginBtn.addEventListener('click', () =>{
     loginForm.classList.add('active');
 });
 
-formClose.addEventListener('click', () =>{
+registerBtn.addEventListener('click', () =>{
     loginForm.classList.remove('active');
+    registerForm.classList.add('active');
+});
+
+loginFormClose.addEventListener('click', () =>{
+    loginForm.classList.remove('active');
+});
+
+registerFormClose.addEventListener('click', () =>{
+    registerForm.classList.remove('active');
 });
 
 videoBtn.forEach(btn =>{
