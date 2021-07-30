@@ -17,8 +17,6 @@ const seedAll = async () => {
     console.log('\n----- USERS SEEDED -----\n');
     await seedPlaces();
     console.log('\n----- PLACES SEEDED -----\n');
-    await seedPlaces();
-    console.log('\n----- PLACES SEEDED -----\n');
     await seedTrips();
     console.log('\n----- TRIPS SEEDED -----\n');
     await seedUserTrips();

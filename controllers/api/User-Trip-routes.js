@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     UserTrip.create({
-        user_id: req.session.user_id,
+        user_id: req.body.user_id,
         trip_id: req.body.trip_id
     })
         .then(dbUserTripData => res.json(dbUserTripData))

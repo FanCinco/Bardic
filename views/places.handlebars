@@ -2,13 +2,42 @@
     <div class="col-md-6">
         <form>
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="Toronto">
-                <label for="placeInput">Place</label>
-                <button class="btn btn-outline-light" type="button">Submit</button>
+                <input type="text" name="create-trip" id="trip-title" class="form-control" placeholder="Enter a brief title for the trip!">
+                <input type="text" name="create-trip" id="place-name" class="form-control" placeholder="And just where are you going?">
+                <div>
+                    <select name="create-trip" id="user-names" class="form-control" style="display: block">
+                        <option value="" default>And who's going on this trip?</option>
+                        {{#each users as |user|}}
+                        <option data-user-id="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
+                        {{/each}}
+                    </select>
+                    <button id="add-user" type="button">Add to Trip</button>
+                    <div id="user-box"></div>
+                </div>
+                <label for="placeInput" style="display: none">Place</label>
+                <button class="btn btn-outline-light" type="submit">Submit</button>
             </div>
         </form>
     </div>
 </div>
+{{!-- <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+        <h2>Trips</h2>
+        {{#each places as |place|}}
+            {{#each place.trips as |trip|}}
+            <h3>{{trip.title}}</h3>
+            <ul>
+                {{#each trip.usertrips as |usertrip|}}
+                <li>
+                    <p>{{usertrip.user_id}}</p>
+                </li>
+                {{/each}}
+            </ul>
+            {{/each}}
+        {{/each}}
+    </div>
+</div> --}}
+
 <div class="row align-items-md-stretch">
     <div class="col-md-6">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
@@ -18,4 +47,5 @@
         </div>
     </div>
 </div>
-
+<script src="/javascript/add-user.js"></script>
+<script src="/javascript/add-trip.js"></script>

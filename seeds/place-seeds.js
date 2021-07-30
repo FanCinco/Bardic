@@ -2,13 +2,13 @@ const { Place } = require('../models');
 
 const placeData = [
     {
-        name: 'Texas'
+        name: 'texas'
     },
     {
-        name: 'Montreal'
+        name: 'montreal'
     },
     {
-        name: 'London'
+        name: 'london'
     }
 ];
 
