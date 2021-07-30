@@ -1,3 +1,16 @@
 textarea[name='story-title'] {
     font-size: 28px;
 }
+
+header {
+    height: 6vh;
+    margin-bottom: 15px;
+}
+
+.expense-submit{
+    width: 100%;
+}
+
+.day-submit{
+    width: 100%;
+}
