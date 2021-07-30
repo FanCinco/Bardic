@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bardic</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+<!-- header starts  -->
+
+<header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"><span>B</span>ardic</a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#places">places</a>
+        <a href="#expenses">expenses</a>
+        <a href="#gallery">gallery</a>
+        <a href="#posts">posts</a>
+    </nav>
+
+    <div class="icons">
+        <i class="fas fa-search" id="search-btn"></i>
+        <i class="fas fa-user" id="login-btn"></i>
+    </div>
+
+    <form action="" class="search-bar-container">
+        <input type="search" id="search-bar" placeholder="search here...">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<!-- header ends -->
+
+<!-- login form container  -->
+
+<div class="login-form-container">
+
+    <i class="fas fa-times" id="form-close"></i>
+
+    <form action="">
+        <h3>login</h3>
+        <input type="email" class="box" placeholder="enter your email">
+        <input type="password" class="box" placeholder="enter your password">
+        <input type="submit" value="login now" class="btn">
+        <input type="checkbox" id="remember">
+        <label for="remember">remember me</label>
+        <p>forget password? <a href="#">click here</a></p>
+        <p>don't have and account? <a href="#">register now</a></p>
+    </form>
+
+</div>
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>A More Rewarding Way To Travel</h3>
+        <p>dicover new places with us, your next adventure awaits</p>
+        <p>explore on a budget and share stories</p>
+        <a href="#" class="btn">discover more</a>
+    </div>
+
+    <div class="controls">
+        <span class="vid-btn active" data-src="images/vid-1.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-2.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-3.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-4.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-5.mp4"></span>
+    </div>
+
+    <div class="video-container">
+        <video src="images/vid-1.mp4" id="video-slider" loop autoplay muted></video>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- places section starts  -->
+
+<section class="places" id="places">
+
+    <h1 class="heading">
+        <span>p</span>
+        <span>l</span>
+        <span>a</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+
+    </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/places.jpg" alt="">
+        </div>
+
+        <form action="">
+            <div class="inputBox">
+                <h3> Destination </h3>
+                <input type="text" placeholder="place name">
+            </div>
+            <div class="inputBox">
+                <h3>how many</h3>
+                <input type="number" placeholder="number of travelers">
+            </div>
+            <div class="inputBox">
+                <h3>arrival</h3>
+                <input type="date">
+            </div>
+            <div class="inputBox">
+                <h3>departure</h3>
+                <input type="date">
+            </div>
+            <input type="submit" class="btn" value="enter">
+        </form>
+
+    </div>
+
+</section>
+
+<!-- places section ends -->
+
+<!-- expenses section starts  -->
+
+<section class="expenses" id="expenses">
+
+    <h1 class="heading">
+        <span>e</span>
+        <span>x</span>
+        <span>p</span>
+        <span>e</span>
+        <span>n</span>
+        <span>s</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <i class="fas fa-hotel"></i>
+            <h3>Hotel Pricing</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-utensils"></i>
+            <h3>food and drinks</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-bullhorn"></i>
+            <h3>safety and insurance</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-globe-asia"></i>
+            <h3>Curreny Exchange</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-plane"></i>
+            <h3>Flight Pricing</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hiking"></i>
+            <h3>adventures</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- expenses section ends -->
+
+<!-- gallery section starts  -->
+
+<section class="gallery" id="gallery">
+
+    <h1 class="heading">
+        <span>g</span>
+        <span>a</span>
+        <span>l</span>
+        <span>l</span>
+        <span>e</span>
+        <span>r</span>
+        <span>y</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/g-1.jpg" alt="">
+            <div class="content">
+                <h3>explore</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-2.jpg" alt="">
+            <div class="content">
+                <h3>explore</h3>
+                <p>Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. </p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-3.jpg" alt="">
+            <div class="content">
+                <h3>explore</h3>
+                <p>Mauris pellentesque pulvinar pellentesque habitant morbi tristique. .</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-4.jpg" alt="">
+            <div class="content">
+                <h3>explore</h3>
+                <p>Ultricies integer quis auctor elit sed vulputate mi sit amet. </p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-5.jpg" alt="">
+            <div class="content">
+                <h3> explore </h3>
+                <p>Est velit egestas dui id ornare. Tellus in hac habitasse platea dictumst vestibulum rhoncus. </p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-6.jpg" alt="">
+            <div class="content">
+                <h3> explore </h3>
+                <p>Ultrices vitae auctor eu augue ut lectus arcu. </p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-7.jpg" alt="">
+            <div class="content">
+                <h3> explore </h3>
+                <p>Vivamus at augue eget arcu.</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-8.jpg" alt="">
+            <div class="content">
+                <h3>explore </h3>
+                <p>Ipsum dolor sit amet consectetur adipiscing elit duis tristique.</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="images/g-9.jpg" alt="">
+            <div class="content">
+                <h3>explore</h3>
+                <p>Nisi scelerisque eu ultrices vitae auctor eu. </p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- gallery section ends -->
+
+<!-- posts section starts  -->
+
+<section class="posts" id="posts">
+    
+    <h1 class="heading">
+        <span>p</span>
+        <span>o</span>
+        <span>s</span>
+        <span>t</span>
+        <span>s</span>
+    </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/posts.jpg" alt="">
+        </div>
+
+        <form action="">
+            <div class="inputBox">
+                <input type="text" placeholder="name">
+                <input type="email" placeholder="email">
+            </div>
+            <div class="inputBox">
+                <input type="number" placeholder="number">
+                <input type="text" placeholder="subject">
+            </div>
+            <textarea placeholder="story telling..." name="" id="" cols="30" rows="10"></textarea>
+            <input type="submit" class="btn" value="submit">
+        </form>
+
+    </div>
+    
+</section>
+
+<!-- posts section ends -->
+
+<!-- footer section  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>about us</h3>
+            <p>Porttitor leo a diam sollicitudin tempor id eu nisl. Tincidunt augue interdum velit euismod in pellentesque. Non diam phasellus vestibulum lorem sed risus ultricies tristique nulla. </p>
+        </div>
+        <div class="box">
+            <h3> locations</h3>
+            <a href="#">Canada</a>
+            <a href="#">USA</a>
+            <a href="#">China</a>
+            <a href="#">UK</a>
+        </div>
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#">home</a>
+            <a href="#">places</a>
+            <a href="#">expenses</a>
+            <a href="#">gallery</a>
+            <a href="#">posts</a>
+        </div>
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="#">facebook</a>
+            <a href="#">instagram</a>
+            <a href="#">twitter</a>
+            <a href="#">linkedin</a>
+        </div>
+
+    </div>
+
+    <h1 class="credit"> created by <span> Team 3 </span> | all rights reserved! </h1>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
