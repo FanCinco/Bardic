@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Trip } = require('../../models');
+const { Day, Expense, Trip, UserTrip } = require('../../models');
 //insert cons for password package
 
 
@@ -19,7 +19,16 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Trip.findOne()
+    Trip.findOne(
+        {
+            include: {
+                model: Day,
+                include: {
+                    model: Expense
+                }
+            }
+        }
+    )
         .then(dbTripData => {
             if (!dbTripData) {
                 res.status(404).json({ message: 'No matching data found with this id' });
@@ -43,12 +52,23 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Trip.create({
         title: req.body.title,
-        place_id: req.body.place_id
+        place_id: req.body.place_id,
     })
-        .then(dbTripData => res.json(dbTripData))
+    // Now we generate the usertrips in bulk
+        .then(trip => {
+            if (typeof req.body.user_ids === 'number') req.body.user_ids = [req.body.user_ids];
+            const userTripArr = req.body.user_ids.map(user_id => {
+                return {
+                    user_id,
+                    trip_id: trip.id
+                }
+            });
+            return UserTrip.bulkCreate(userTripArr);
+        })
+        .then(usertripIds => res.status(200).json(usertripIds))
         .catch(err => {
             console.log(err);
-            res.status(500).json(err);
+            res.status(400).json(err);
         });
 });
 
