@@ -1,4 +1,4 @@
-<!-- expenses section starts  -->
+<!-- stories section starts  -->
 
 <main class="posts" id="posts">
     
@@ -18,24 +18,7 @@
             <img src="images/posts.jpg" alt="">
         </div>
 
-        <form action="">
-            <div class="inputBox">
-                <input type="text" placeholder="name">
-                <input type="email" placeholder="email">
-            </div>
-
-            <div class="inputBox">
-                <input type="number" placeholder="number">
-                <input type="text" placeholder="subject">
-            </div>
-
-            {{!-- <textarea placeholder="story telling..." name="" id="" cols="30" rows="10"></textarea> --}}
-
-            <input type="submit" class="btn" value="submit">
-
-            <p>                
-            </p>
-
+        <form id="create-story">
             <div class="container">
 
                     {{#if loggedIn}}
@@ -65,14 +48,15 @@
                             </select>
                         </div>
 
-                        <button>Create Story</button>
+                        <input type="submit" class="btn" value="post story">
 
                     </form>
 
                     {{/if}}
                     <div class="row">
+                        <br>
                         {{#each stories as |story| }}
-                        <p><br></p>
+                        <br>
                         {{> story-info story }}
                         {{/each}}
                     </div>
@@ -80,14 +64,14 @@
                 
             </div>
 
-            {{#if loggedIn}}
-            <script src="/javascript/add-story.js"></script>
-            {{/if}}
 
         </form>
 
     </div>
     
 </main>
+{{#if loggedIn}}
+<script src="/javascript/add-story.js"></script>
+{{/if}}
 
-<!-- expenses section ends -->
+<!-- stories section ends -->

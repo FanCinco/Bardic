@@ -28,8 +28,12 @@
     </nav>
 
     <div class="icons">
+        {{#unless loggedIn}}
         <i class="fas fa-user" id="login-btn"></i>
+        {{/unless}}
+        {{#if loggedIn}}
         <i class="fas fa-sign-out-alt" id="logout-btn"></i>
+        {{/if}}
     </div>
 
 </header>
@@ -42,14 +46,12 @@
 
     <i class="fas fa-times" id="login-form-close"></i>
 
-    <form action="">
-        <h3>login</h3>
-        <input type="email" class="box" id="floatingFirstName" placeholder="enter your first name">
-        <input type="email" class="box" id="floatingLastName" placeholder="enter your last name">        
-        <input type="email" class="box" id="floatingInput" placeholder="enter your email">
-        <input type="password" class="box" id="floatingPassword" placeholder="enter your password">
+    <form action="" id="login-form">
+        <h3>login</h3>   
+        <input type="email" class="box" id="floatingInputLog" placeholder="enter your email">
+        <input type="password" class="box" id="floatingPasswordLog" placeholder="enter your password">
             <input type="submit" value="login now" class="btn login-btn">
-        <input type="checkbox" id="remember" value="remember-me">
+        <input type="checkbox" id="rememberLog" value="remember-me">
             <label for="remember">remember me</label>
         <p>forget password? <a href="#">click here</a></p>
         <p>don't have and account? <a id="register-btn" href="#">register now</a></p>
@@ -63,14 +65,14 @@
 
     <i class="fas fa-times" id="register-form-close"></i>
 
-    <form action="">
+    <form action="" id="register-form">
         <h3>register</h3>
-        <input type="name" class="box" id="floatingFirstName" placeholder="enter your first name">
-        <input type="name" class="box" id="floatingLastName" placeholder="enter your last name">        
-        <input type="email" class="box" id="floatingInput" placeholder="enter your email">
-        <input type="password" class="box" id="floatingPassword" placeholder="enter your password">
+        <input type="name" class="box" id="floatingFirstNameReg" placeholder="enter your first name">
+        <input type="name" class="box" id="floatingLastNameReg" placeholder="enter your last name">        
+        <input type="email" class="box" id="floatingInputReg" placeholder="enter your email">
+        <input type="password" class="box" id="floatingPasswordReg" placeholder="enter your password">
         <input type="submit" value="register now" class="btn signup-btn">
-        <input type="checkbox" id="remember" value="remember-me">
+        <input type="checkbox" id="rememberReg" value="remember-me">
         <label for="remember">remember me</label>
     </form>
 
@@ -123,6 +125,11 @@
 
 {{!-- custom js file link --}}
 <script src="/javascript/script.js"></script>
-
+{{#unless loggedIn}}
+<script src="/javascript/login.js"></script>
+{{/unless}}
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
 </body>
 </html>

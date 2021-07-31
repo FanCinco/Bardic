@@ -1,5 +1,3 @@
-let logoutBtn = document.querySelector('#logout-btn');
-let loginBtn = document.querySelector('#login-btn');
 let registerBtn = document.querySelector('#register-btn');
 let loginForm = document.querySelector('.login-form-container');
 let registerForm = document.querySelector('.register-form-container');
@@ -10,24 +8,14 @@ let navbar = document.querySelector('.navbar');
 let videoBtn = document.querySelectorAll('.vid-btn');
 
 window.onscroll = () =>{
-    logoutBtn.classList.remove('fa-times');
     menu.classList.remove('fa-times');
     navbar.classList.remove('active');
-    loginForm.classList.remove('active');
     registerForm.classList.remove('active');
 }
 
 menu.addEventListener('click', () =>{
     menu.classList.toggle('fa-times');
     navbar.classList.toggle('active');
-});
-
-logoutBtn.addEventListener('click', () =>{
-    logoutBtn.classList.toggle('fa-times');
-});
-
-loginBtn.addEventListener('click', () =>{
-    loginForm.classList.add('active');
 });
 
 registerBtn.addEventListener('click', () =>{
