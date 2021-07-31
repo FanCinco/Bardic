@@ -1,42 +1,77 @@
-<div class="row">
-    <div class="row col-6 border border-primary" style="padding-left: 35px; height: fit-content;">
-        <div class="d-flex w-100 m-2">
-            <textarea class="form-control expense-description" placeholder="Place your expense" rows="2"></textarea>
-        </div>
-        <div class="d-flex w-100 align-items-center justify-content-around border-bottom border-secondary pb-2 ">
-            <div style="width: 30%;">
-                <input type="text" label="expense-cost" class="form-control expense-cost-input" placeholder="Cost">
-            </div>
-            <div style="width: 30%;">
-                <input type="text" class="form-control expense-day" placeholder="mm/dd/yyyy"/>
-            </div>
-            <div style="width: 30%;">
-                <button type="submit" class="btn btn-primary expense-submit">Submit</button>
-            </div>
-        </div>
+<!-- places section starts  -->
 
-        <div class="m-2 w-100">
-            <div class="form-group row align-items-center justify-content-around">
-                <div style="width: 60%; margin-left:3px;" class="d-flex">
-                    <label class="mr-2">Date:</label>
-                    <input type="text" class="form-control day-lookup" placeholder="mm/dd/yyyy"/>
+<main class="places" id="places">
+
+    <h1 class="heading">
+        <span>e</span>
+        <span>x</span>
+        <span>p</span>
+        <span>e</span>
+        <span>n</span>
+        <span>s</span>
+        <span>e</span>
+        <span>s</span>
+
+    </h1>
+
+    <div class="row">
+
+        
+        <form action="">
+            <div class="inputBox">
+                <h3> description </h3>
+                <input class="form-control expense-description" placeholder="restaurant name, etc..." rows="2" id="expense-description" ></input>
+            </div>
+            <div class="inputBox">
+                <h3>cost ($)</h3>
+                <input type="text" label="expense-cost" class="form-control expense-cost-input" placeholder="20.00" id="expense-cost" >
+            </div>
+            <div class="inputBox">
+                <h3>date (MM/DD/YYYY)</h3>
+                <input type="text" class="form-control expense-day" placeholder="mm/dd/yyyy" id="expense-day" />
+            </div>
+            <button type="submit" class="btn btn-primary expense-submit">Submit</button>
+            <p><br></p>
+
+            {{!-- <div class="inputBox">
+                <h3>Expenses</h3>
+                <ul>
+                    <li class="list-item">Hotel stay - $120.00</li>
+                    <li class="list-item">Breakfast - $15.00</li>
+                    <li class="list-item">Lunch - $20.00</li>
+                    <li class="list-item">Dinner - $25.00</li>
+                    <li class="list-item">Movie - $10.00</li>
+                </ul>
+                <br>
+                <p class="list-item">Total - $190.00</p>
+            </div> --}}
+
+            <div class="inputBox">
+                <h3>Expenses by Date</h3>
+            </div>
+            <div class="m-2 w-100">
+                <div class="form-group row align-items-center justify-content-around">
+                    <div style="width: 60%; margin-left:3px;" class="d-flex">
+                        <label class="mr-2">Date:</label>
+                        <input type="text" class="form-control day-lookup" placeholder="MM/DD/YYYY"/>
+                    </div>
+                    <div style="width: 40%;">
+                        <button type="submit" class="btn btn-primary day-submit">Find Expenses</button>
+                    </div>  
                 </div>
-                <div style="width: 30%;">
-                    <button type="submit" class="btn btn-primary day-submit">Submit</button>
-                </div>  
+                <div>
+                    {{!-- add day data here --}}
+                </div>
             </div>
-            <div>
-                {{!-- add day data here --}}
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-6">
-        <div class="p-5 bg-light border rounded-3" style="height: 40vh;">
-        <h2>Add borders</h2>
-        {{!-- <img src"quickcharts img goes here">  --}}
-        </div>
-    </div>
-</div>
+            
+        </form>
 
-<script src="/javascript/add-day.js"></script>
+        <div class="image">
+            <img src="images/chart.png" alt="">
+        </div>
+
+    </div>
+
+</main>
+
+<!-- places section ends -->
