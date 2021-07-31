@@ -21,7 +21,7 @@ async function addTripHandler(e) {
     const usersElArray = Array.from(document.querySelector('#user-box').children).map(userEl => userEl.children[0]);
     // If the user didn't select anyone to go on the trip, we have to set this value false
     const user_ids = usersElArray.map(userEl => parseInt(userEl.getAttribute('data-user-id')));
-    console.log(title, name, user_ids);
+
     if (title && name && user_ids) {
         // First, we have to check if the place is already in the database and, if not, add it! Either way, we need its id value to create the place_id in the trip
         const placeResponse = await fetch('/api/places')
@@ -35,6 +35,7 @@ async function addTripHandler(e) {
             : 
             await getPlaceID(name);
         // Look, I get that this is probably the slowest function there ever was, okay? So many awaits...
+        console.log(title, place_id, user_ids);
         const response = await fetch('/api/trips', {
             method: 'post',
             body: JSON.stringify({
@@ -46,11 +47,11 @@ async function addTripHandler(e) {
         });
 
         if (response.ok) {
-            document.location.reload();
+            // document.location.reload();
         } else {
             alert(response.statusText);
         }
     }
 }
 
-document.querySelector('form').addEventListener('submit', addTripHandler);
+document.querySelector('#create-trip-form').addEventListener('submit', addTripHandler);

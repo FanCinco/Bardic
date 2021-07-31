@@ -38,7 +38,7 @@
             <input type="submit" class="btn" value="enter">
         </form> --}}
 
-        <form>
+        <form id="create-trip-form">
             <div class="form-floating">
                 <div class="inputBox">
                     <input type="text" name="create-trip" id="trip-title" class="form-control" placeholder="Enter a brief title for the trip!">
@@ -52,8 +52,8 @@
                         <option data-user-id="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
                         {{/each}}
                     </select>
-                    <button id="add-user" class="btn btn-outline-light" type="button">Add to Trip</button>
                     <div id="user-box"></div>
+                    <button class="btn btn-outline-light" type="submit">Add to Trip</button>
                 </div>
                 <label for="placeInput" style="display: none">Place</label>
             </div>
@@ -63,4 +63,5 @@
 
 </main>
 <script src="/javascript/add-trip.js"></script>
+<script src="/javascript/add-user.js"></script>
 <!-- places section ends -->
