@@ -16,22 +16,24 @@
 
     <div class="row">
 
+        
         <form action="">
             <div class="inputBox">
                 <h3> description </h3>
-                <input type="text" placeholder="restaurant name etc...">
+                <input class="form-control expense-description" placeholder="restaurant name, etc..." rows="2" id="expense-description" ></input>
             </div>
             <div class="inputBox">
-                <h3>cost</h3>
-                <input type="number" placeholder="$0.00">
+                <h3>cost ($)</h3>
+                <input type="text" label="expense-cost" class="form-control expense-cost-input" placeholder="20.00" id="expense-cost" >
             </div>
             <div class="inputBox">
-                <h3>date</h3>
-                <input type="date">
+                <h3>date (MM/DD/YYYY)</h3>
+                <input type="text" class="form-control expense-day" placeholder="mm/dd/yyyy" id="expense-day" />
             </div>
-            <input type="submit" class="btn" value="enter">
+            <button type="submit" class="btn btn-primary expense-submit">Submit</button>
+            <p><br></p>
 
-            <div class="inputBox">
+            {{!-- <div class="inputBox">
                 <h3>Expenses</h3>
                 <ul>
                     <li class="list-item">Hotel stay - $120.00</li>
@@ -42,7 +44,25 @@
                 </ul>
                 <br>
                 <p class="list-item">Total - $190.00</p>
-        </div>
+            </div> --}}
+
+            <div class="inputBox">
+                <h3>Expenses by Date</h3>
+            </div>
+            <div class="m-2 w-100">
+                <div class="form-group row align-items-center justify-content-around">
+                    <div style="width: 60%; margin-left:3px;" class="d-flex">
+                        <label class="mr-2">Date:</label>
+                        <input type="text" class="form-control day-lookup" placeholder="MM/DD/YYYY"/>
+                    </div>
+                    <div style="width: 40%;">
+                        <button type="submit" class="btn btn-primary day-submit">Find Expenses</button>
+                    </div>  
+                </div>
+                <div>
+                    {{!-- add day data here --}}
+                </div>
+            </div>
             
         </form>
 

@@ -18,7 +18,7 @@
             <img src="images/places.jpg" alt="">
         </div>
 
-        <form action="">
+        {{!-- <form action="">
             <div class="inputBox">
                 <h3> Destination </h3>
                 <input type="text" placeholder="place name">
@@ -36,6 +36,27 @@
                 <input type="date">
             </div>
             <input type="submit" class="btn" value="enter">
+        </form> --}}
+
+        <form>
+            <div class="form-floating">
+                <div class="inputBox">
+                    <input type="text" name="create-trip" id="trip-title" class="form-control" placeholder="Enter a brief title for the trip!">
+                    <p><br></p>
+                    <input type="text" name="create-trip" id="place-name" class="form-control" placeholder="And just where are you going?">
+                </div>
+                <div>
+                    <select name="create-trip" id="user-names" class="form-control" style="display: block">
+                        <option value="" default>And who's going on this trip?</option>
+                        {{#each users as |user|}}
+                        <option data-user-id="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
+                        {{/each}}
+                    </select>
+                    <button id="add-user" class="btn btn-outline-light" type="button">Add to Trip</button>
+                    <div id="user-box"></div>
+                </div>
+                <label for="placeInput" style="display: none">Place</label>
+            </div>
         </form>
 
     </div>
