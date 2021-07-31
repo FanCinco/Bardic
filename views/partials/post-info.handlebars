@@ -1,9 +1,10 @@
 <div class="post bg-secondary">
     <div class="post-content">
-        <p>{{content}}</p>
+        <p> &emsp; {{content}}</p>
     </div>
     <div class="post-meta">
-        <p>Posted by {{user.firstName}} {{user.lastName}} on {{format_date created_at}}</p>
+        <p> &emsp; Posted by {{user.firstName}} {{user.lastName}} on {{format_date created_at}}</p>
+        <p><br></p>
     </div>
     <div class="comments">
         {{#each comments as |comment| }}

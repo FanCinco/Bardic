@@ -1,4 +1,4 @@
-<!-- posts section starts  -->
+<!-- expenses section starts  -->
 
 <main class="posts" id="posts">
     
@@ -23,16 +23,71 @@
                 <input type="text" placeholder="name">
                 <input type="email" placeholder="email">
             </div>
+
             <div class="inputBox">
                 <input type="number" placeholder="number">
                 <input type="text" placeholder="subject">
             </div>
-            <textarea placeholder="story telling..." name="" id="" cols="30" rows="10"></textarea>
+
+            {{!-- <textarea placeholder="story telling..." name="" id="" cols="30" rows="10"></textarea> --}}
+
             <input type="submit" class="btn" value="submit">
+
+            <p>                
+            </p>
+
+            <div class="container">
+
+                    {{#if loggedIn}}
+
+                    <form class="story-form d-flex flex-column align-items-start" id="{{user.id}}">
+
+                        <div id="title">
+                            <label for="story-title">Title</label>
+                            <input type="text" id="story-title" name="story-title">
+                        </div>
+
+                        <div id="startingText">
+                            <label for="story-startingText">Starting Text</label>
+                            <textarea name="story-startingText" id="story-startingText" class="form-control-m" rows="3"></textarea>
+                        </div>
+
+                        <div id="trip-id">
+                            <label for="story-trip-id">Which Trip Was It?</label>
+                            <select name="story-trip-id" id="story-trip-id">
+
+                                <option value="default" selected ></option>
+                                {{#each user.usertrips as |usertrip| }}
+
+                                <option data-trip-id="{{usertrip.trip.id}}" data-place-id="{{usertrip.trip.place_id}}">{{usertrip.trip.title}}</option>
+                                {{/each}}
+                                
+                            </select>
+                        </div>
+
+                        <button>Create Story</button>
+
+                    </form>
+
+                    {{/if}}
+                    <div class="row">
+                        {{#each stories as |story| }}
+                        <p><br></p>
+                        {{> story-info story }}
+                        {{/each}}
+                    </div>
+                    
+                
+            </div>
+
+            {{#if loggedIn}}
+            <script src="/javascript/add-story.js"></script>
+            {{/if}}
+
         </form>
 
     </div>
     
 </main>
 
-<!-- posts section ends -->
+<!-- expenses section ends -->
