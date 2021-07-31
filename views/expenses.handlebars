@@ -1,19 +1,30 @@
 <div class="row">
     <div class="row col-6 border border-primary" style="padding-left: 35px; height: fit-content;">
-        <div class="d-flex w-100 m-2">
-            <textarea class="form-control expense-description" placeholder="Place your expense" rows="2"></textarea>
+        <div>
+            <select name="trip-select" id="trip-select">
+                <option value=""></option>
+                {{#each user.usertrips as |usertrip|}}
+                <option value="">{{usertrip.trip.title}}</option>
+                {{/each}}
+            </select>
+            <button id="trip-select-btn">Select Trip</button>
         </div>
-        <div class="d-flex w-100 align-items-center justify-content-around border-bottom border-secondary pb-2 ">
-            <div style="width: 30%;">
-                <input type="text" label="expense-cost" class="form-control expense-cost-input" placeholder="Cost">
+        <form>
+            <div class="d-flex w-100 m-2">
+                <textarea class="form-control expense-description" placeholder="Place your expense" rows="2" id="expense-description" ></textarea>
             </div>
-            <div style="width: 30%;">
-                <input type="text" class="form-control expense-day" placeholder="mm/dd/yyyy"/>
+            <div class="d-flex w-100 align-items-center justify-content-around border-bottom border-secondary pb-2 ">
+                <div style="width: 30%;">
+                    <input type="text" label="expense-cost" class="form-control expense-cost-input" placeholder="Cost" id="expense-cost" >
+                </div>
+                <div style="width: 30%;">
+                    <input type="text" class="form-control expense-day" placeholder="mm/dd/yyyy" id="expense-day" />
+                </div>
+                <div style="width: 30%;">
+                    <button type="submit" class="btn btn-primary expense-submit">Submit</button>
+                </div>
             </div>
-            <div style="width: 30%;">
-                <button type="submit" class="btn btn-primary expense-submit">Submit</button>
-            </div>
-        </div>
+        </form>
 
         <div class="m-2 w-100">
             <div class="form-group row align-items-center justify-content-around">
@@ -39,4 +50,5 @@
     </div>
 </div>
 
-<script src="/javascript/add-day.js"></script>
+{{!-- <script src="/javascript/add-day.js"></script> --}}
+<script src="/javascript/add-expense.js"></script>
