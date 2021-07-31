@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Trip, UserTrip } = require('../../models');
+const { Day, Expense, Trip, UserTrip } = require('../../models');
 //insert cons for password package
 
 
@@ -19,7 +19,16 @@ router.get('/', (req, res) => {
 //get one
 
 router.get('/:id', (req, res) => {
-    Trip.findOne()
+    Trip.findOne(
+        {
+            include: {
+                model: Day,
+                include: {
+                    model: Expense
+                }
+            }
+        }
+    )
         .then(dbTripData => {
             if (!dbTripData) {
                 res.status(404).json({ message: 'No matching data found with this id' });

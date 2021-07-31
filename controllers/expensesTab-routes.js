@@ -8,21 +8,11 @@ const { Day, Expense, Trip, User, UserTrip } = require('../models');
 router.get('/', (req, res) => {
     console.log(req.session);
     console.log('======================');
-    // Expense.findAll({
-    //     attributes: [
-    //         'id',
-    //         'description',
-    //         'cost',
-    //         'day_id',
-    //         // 'created_at',
-    //     ],
-    //     // include: [
-    //     //     {
-    //     //         model: User,
-    //     //         attributes: ['username']
-    //     //     }
-    //     // ]
-    // })
+
+    if (!req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
     User.findOne(
         {
             where: {
@@ -45,7 +35,7 @@ router.get('/', (req, res) => {
     )
         .then(dbUserData => {
             const user = dbUserData.get({ plain: true });
-            console.log(user.usertrips);
+
             res.render('expenses', { user, loggedIn: req.session.loggedIn });
         })
         .catch(err => {

@@ -1,15 +1,15 @@
 <div class="row">
     <div class="row col-6 border border-primary" style="padding-left: 35px; height: fit-content;">
-        <div>
-            <select name="trip-select" id="trip-select">
-                <option value=""></option>
-                {{#each user.usertrips as |usertrip|}}
-                <option value="">{{usertrip.trip.title}}</option>
-                {{/each}}
-            </select>
-            <button id="trip-select-btn">Select Trip</button>
-        </div>
+            {{!-- <button id="trip-select-btn">Select Trip</button> --}}
         <form>
+            <div>
+                <select name="trip-select" id="trip-select" class="form-control">
+                    <option value=""></option>
+                    {{#each user.usertrips as |usertrip|}}
+                    <option value="{{usertrip.trip.id}}">{{usertrip.trip.title}}</option>
+                    {{/each}}
+                </select>
+            </div>
             <div class="d-flex w-100 m-2">
                 <textarea class="form-control expense-description" placeholder="Place your expense" rows="2" id="expense-description" ></textarea>
             </div>
