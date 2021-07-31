@@ -5,7 +5,7 @@ const { Comment, Post, Story, Trip, User, UserTrip } = require('../../models');
 // get all users
 router.get('/', (req, res) => {
   User.findAll({
-    // attributes: { exclude: ['password'] }
+    attributes: { exclude: ['password'] }
   })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
@@ -31,30 +31,6 @@ router.get('/:id', (req, res) => {
           // 'created_at'
         ]
       },
-      // {
-      //   model: Expenses,
-      //   attributes: [
-      //     'id',
-      //     'description',
-      //     'cost',
-      //     'day_id',
-      //     'created_at']
-      // },
-      // {
-      //   model: Day,
-      //   attributes: [
-      //     'id',
-      //     'date',
-      //     'trip_id',
-      //     'created_at']
-      // },
-      // {
-      //   model: Places,
-      //   attributes: [
-      //     'id',
-      //     'name',
-      //     'created_at']
-      // },
       {
         model: Post,
         attributes: [
@@ -79,7 +55,6 @@ router.get('/:id', (req, res) => {
             'id',
             'title',
             'place_id',
-            // 'created_at'
           ]
         },
       },
