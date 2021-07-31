@@ -5,7 +5,7 @@ const { Comment, Post, Story, Trip, User, UserTrip } = require('../../models');
 // get all users
 router.get('/', (req, res) => {
   User.findAll({
-    attributes: { exclude: ['password'] }
+    // attributes: { exclude: ['password'] }
   })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
@@ -142,10 +142,10 @@ router.post('/login', (req, res) => {
 
     const validPassword = dbUserData.checkPassword(req.body.password);
 
-    // if (!validPassword) {
-    //   res.status(400).json({ message: 'Incorrect password!' });
-    //   return;
-    // }
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
