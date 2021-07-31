@@ -18,6 +18,17 @@
 
         
         <form action="" id="create-expense-form">
+            <div class="inputbox">
+                <h3>trip</h3>
+                <select name="select-trip" class="form-control" id="trip_id" placeholder="Which trip was this on?">
+                    <option value="" selected>Which trip was this on?</option>
+                    {{#each users.usertrips as |usertrip|}}
+                    {{#each usertrip.trip as |trip|}}
+                    <option value="">{{trip.title}}</option>
+                    {{/each}}
+                    {{/each}}
+                </select>
+            </div>
             <div class="inputBox">
                 <h3> description </h3>
                 <input class="form-control expense-description" placeholder="restaurant name, etc..." rows="2" id="expense-description" ></input>
