@@ -3,7 +3,7 @@ const expenseDataEl = document.querySelector('#expense-data');
 async function getExpensesHandler(e) {
     e.preventDefault();
 
-    const trip_id = document.querySelector('#trip-select').value.trim();
+    const trip_id = document.querySelector('#get-expense-trip-select').value.trim();
     const date = document.querySelector('.hasDatepicker').value.trim();
 
     if (trip_id && date) {
