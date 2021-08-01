@@ -3,7 +3,7 @@ const expenseDataEl = document.querySelector('#expense-data');
 async function getExpensesHandler(e) {
     e.preventDefault();
 
-    const trip_id = document.querySelector('#trip-select').value.trim();
+    const trip_id = document.querySelector('#get-expense-trip-select').value.trim();
     const date = document.querySelector('.hasDatepicker').value.trim();
 
     if (trip_id && date) {
@@ -14,7 +14,6 @@ async function getExpensesHandler(e) {
         // Formatting the date for comparison
         const dateSplit = date.split('/');
         const moddedDate = `${dateSplit[2]}-${dateSplit[0]}-${dateSplit[1]}`;
- 
         const expensesOnDay = response.days.filter(day => day.date === moddedDate);
 
         // Clear out the box so that the information doesn't pile up
@@ -30,10 +29,12 @@ async function getExpensesHandler(e) {
             expensesOnDay[0].Expenses.forEach(expense => {
                 const expenseEl = document.createElement('div');
                 const expenseDescriptionEl = document.createElement('p');
+                expenseDescriptionEl.className = 'expenseDescription';
                 const expenseCostEl = document.createElement('p');
+                expenseCostEl.className = 'expenseCost';
 
-                expenseDescriptionEl.textContent = expense.description;
-                expenseCostEl.textContent = expense.cost;
+                expenseDescriptionEl.textContent =expense.description;
+                expenseCostEl.textContent = "$" + expense.cost;
     
                 expenseEl.appendChild(expenseDescriptionEl);
                 expenseEl.appendChild(expenseCostEl);
@@ -49,13 +50,11 @@ function showDatehandler(event) {
     var date = $(this)
     .text()
     .trim();
-  
     // create new input element
     var dateInput = $("<input>")
     .attr("type", "text")
     .addClass("form-control")
     .val(date);
-  
     // swap elements
     $(this).replaceWith(dateInput);
     // enable jquery ui datepicker

@@ -34,6 +34,16 @@ main {
   margin-top: 7.4rem;
 }
 
+.logo {
+  position: relative;
+}
+
+.logo span {
+  position: absolute;
+  right: 50px;
+  max-height: 40px;
+}
+
 .list-item {
   font-size: medium;
   list-style: none;
@@ -514,6 +524,22 @@ header .icons i:hover{
   width:100%;
 }
 
+.post {
+  border-top: 1px solid gray;
+  padding-top: 4px;
+}
+
+.comment-content,
+.comment-meta {
+  color: cornflowerblue;
+}
+
+.comment-content {
+  border-top: 1px solid cornflowerblue;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .footer{
   background:#333;
 }
@@ -583,6 +609,10 @@ header .icons i:hover{
     padding:2rem;
   }
 
+  .logo span {
+    display: none;
+  }
+
   section{
     padding:2rem;
   }
@@ -616,6 +646,9 @@ header .icons i:hover{
     background:#222;
   }
 
+  .logo span {
+    display: block;
+  }
 }
 
 @media (max-width:450px){
@@ -632,3 +665,81 @@ header .icons i:hover{
     width:100%;
   }
 }
+
+/* stories styling */
+
+.story-title {
+  font-size: 2em;
+}
+
+.story-user {
+  font-size: 1.5em;
+}
+
+.story-startingText {
+  font-size: 1.3em;
+  padding: 1em;
+}
+
+.storyAdd,
+.storyTitle {
+  border-style: solid;
+  border-color: cadetblue;
+  border-width: 1px;
+  margin-bottom: 2px;
+  width: 250px;
+}
+
+.storyaddMain {
+  max-width: 250px;
+}
+
+#story-1 {
+  padding: 1vh 1em 1em 1em;
+}
+
+.storyCurrent {
+  border-style: solid;
+  border-color: cadetblue;
+  border-width: 1px;
+  margin-bottom: 2px;
+  width: 250px;
+}
+
+textarea {
+  resize: none;
+}
+
+.logo {
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.storyArticle {
+  text-align: center;
+}
+
+#edit-btn {
+  margin-right: 4px;
+}
+
+#delete-btn {
+  margin-left: 4px;
+}
+
+.post {
+  text-align: -webkit-center;
+}
+
+/* expenses styling */
+
+#expense-data {
+  font-size: 1.4em;
+  padding-top: 1em;
+}
+
+.expenseDescription {
+  font-weight: bold;
+}
+

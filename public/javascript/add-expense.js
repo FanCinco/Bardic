@@ -25,13 +25,17 @@ async function expenseFormHandler(e) {
         const tripResponse = await fetch(`api/trips/${trip_id}`)
             .then(tripData => tripData.json());
 
-        const alreadyInDB = tripResponse.days.some(day => day.date === date);
+        // Formatting the date for comparison
+        const dateSplit = date.split('/');
+        const moddedDate = `${dateSplit[2]}-${dateSplit[0]}-${dateSplit[1]}`;
+ 
+        const alreadyInDB = tripResponse.days.some(day => day.date === moddedDate);
 
         // Ternary operator. It's assigning trip_id based on whether or not it's in the database already for that trip. If it is, it's the same id as the existing date. If not, a new entry is made
         const day_id = alreadyInDB ?
-            tripResponse.days[tripResponse.days.findIndex(day => day.date === date)].id
+            tripResponse.days[tripResponse.days.findIndex(day => day.date === moddedDate)].id
             :
-            await getDayID(date, trip_id);
+            await getDayID(moddedDate, trip_id);
 
         // Now that we have a day_id, we can actually create an expense in the database
         const expenseResponse = await fetch('api/expenses', {
