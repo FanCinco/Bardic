@@ -678,3 +678,9 @@ header .icons i:hover{
 textarea {
   resize: none;
 }
+
+.logo {
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
