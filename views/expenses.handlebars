@@ -16,16 +16,13 @@
 
     <div class="row">
 
-        
         <form action="" id="create-expense-form">
             <div class="inputbox">
                 <h3>trip</h3>
-                <select name="select-trip" class="form-control" id="trip_id" placeholder="Which trip was this on?">
-                    <option value="" selected>Which trip was this on?</option>
-                    {{#each users.usertrips as |usertrip|}}
-                    {{#each usertrip.trip as |trip|}}
-                    <option value="">{{trip.title}}</option>
-                    {{/each}}
+                <select name="trip-select" class="form-control" id="trip-select" placeholder="Which trip was this on?">
+                    <option value=""></option>
+                    {{#each user.usertrips as |usertrip|}}
+                    <option value="{{usertrip.trip.id}}">{{usertrip.trip.title}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -67,16 +64,16 @@
                         <input type="text" class="form-control day-lookup" placeholder="MM/DD/YYYY"/>
                     </div>
                     <div style="width: 40%;">
-                        <button type="submit" class="btn btn-primary day-submit">Find Expenses</button>
+                        <button type="click" class="btn btn-primary day-submit">Find Expenses</button>
                     </div>  
                 </div>
-                <div>
+                <div id='expense-data'>
                     {{!-- add day data here --}}
                 </div>
             </div>
             
         </form>
-
+        
         <div class="image">
             <img src="images/chart.png" alt="">
         </div>
@@ -85,5 +82,7 @@
 
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/add-expense.js"></script>
+<script src="/javascript/get-expenses.js"></script>
 <!-- places section ends -->
