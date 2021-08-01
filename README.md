@@ -18,15 +18,27 @@
 * [Questions](#questions)
 
 ### Sections
+
+The Welcome Page
+
 ![ScreenShot](/assets/images/home.jpeg)
 
 * #### Places
+
+In this section you'll be able to enter a trip title, a destination city/place and who you would like to include for your next adventure. 
+
 ![ScreenShot](/assets/images/places.jpeg)
 
 * #### Stories
+
+Who doesn't have cool stories trips to share? Here you'll be able to write down and share all your travel adventures in one place so everyone going on the trip with you can see them. 
+
 ![ScreenShot](/assets/images/stories.jpeg)
 
 * #### Expenses
+
+Of course there are always things you need to pay for on a trip. To keep track of all that, we have included a tab to help you record and see all the things you have paid for on your trip 
+
 ![ScreenShot](/assets/images/expenses.jpeg)
 
 
