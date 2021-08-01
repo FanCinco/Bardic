@@ -514,6 +514,22 @@ header .icons i:hover{
   width:100%;
 }
 
+.post {
+  border-top: 1px solid gray;
+  padding-top: 4px;
+}
+
+.comment-content,
+.comment-meta {
+  color: cornflowerblue;
+}
+
+.comment-content {
+  border-top: 1px solid cornflowerblue;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .footer{
   background:#333;
 }
