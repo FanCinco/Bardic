@@ -10,7 +10,7 @@
                         <h2>{{story.title}}</h2>
                         {{/unless}}
                         {{#if editable}}
-                        <textarea name="story-title" id="story-title" rows="3" class="form-control bg-primary">{{story.title}}</textarea>
+                        <textarea name="story-title" id="story-title" rows="3" class="form-control storyTitle">{{story.title}}</textarea>
                         {{/if}}
                     </div>
                     <div class="story-user">
@@ -21,7 +21,7 @@
                         <p>{{story.startingText}}</p>
                         {{/unless}}
                         {{#if editable}}
-                        <textarea name="story-startingText" class="form-control bg-primary" id="story-startingText" rows="10">{{story.startingText}}</textarea>
+                        <textarea name="story-startingText" class="form-control storyCurrent" id="story-startingText" rows="5">{{story.startingText}}</textarea>
                         {{/if}}
                     </div>
                 </div>
@@ -32,9 +32,9 @@
             </article>
             <div class="posts">
                 {{#if canPost}}
-                <div class="form-control">
+                <div class="form-control storyaddMain">
+                    <textarea class="form-control storyAdd" name="post-content" id="post-content" rows="2"></textarea>
                     <label for="post-content">Anything else to add to this story?</label>
-                    <textarea class="form-control" name="post-content" id="post-content" rows="4"></textarea>
                     <button type="submit" id="create-post">Create Post</button>
                 </div>
                 {{/if}}

@@ -632,3 +632,49 @@ header .icons i:hover{
     width:100%;
   }
 }
+
+/* stories styling */
+
+.story-title {
+  font-size: 2em;
+}
+
+.story-user {
+  font-size: 1.5em;
+}
+
+.story-startingText {
+  font-size: 1.3em;
+  padding: 1em;
+}
+
+.storyAdd,
+.storyTitle {
+  border-style: solid;
+  border-color: cadetblue;
+  border-width: 1px;
+  margin-bottom: 2px;
+  width: 250px;
+}
+
+.storyaddMain {
+  padding: 1em;
+  max-width: 250px;
+}
+
+#story-1 {
+  padding: 8vh 1em 1em 1em;
+}
+
+.storyCurrent {
+  border-style: solid;
+  border-color: cadetblue;
+  border-width: 1px;
+  margin-bottom: 2px;
+  width: 250px;
+  margin: 0px 0px 0px -1em;
+}
+
+textarea {
+  resize: none;
+}
