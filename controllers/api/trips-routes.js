@@ -21,6 +21,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Trip.findOne(
         {
+            where: {
+                id: req.params.id
+            },
             include: {
                 model: Day,
                 include: {
