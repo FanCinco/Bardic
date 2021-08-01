@@ -1,3 +1,9 @@
+const loginBtn = document.querySelector('#login-btn');
+
+window.onScroll = () => {
+  loginForm.classList.remove('active');
+}
+
 const login = async (email, password) => {
   if (email && password) {
     const response = await fetch('/api/users/login', {
@@ -20,10 +26,10 @@ const login = async (email, password) => {
 async function signupFormHandler(event) {
     event.preventDefault();
 
-    const firstName = document.querySelector('#floatingFirstName').value.trim();
-    const lastName = document.querySelector('#floatingLastName').value.trim();
-    const email = document.querySelector('input[type="email"]').value.trim();
-    const password = document.querySelector('input[type="password"]').value.trim();
+    const firstName = document.querySelector('#floatingFirstNameReg').value.trim();
+    const lastName = document.querySelector('#floatingLastNameReg').value.trim();
+    const email = document.querySelector('#floatingInputReg').value.trim();
+    const password = document.querySelector('#floatingPasswordReg').value.trim();
 
     if (firstName && lastName && email && password) {
         const response = await fetch('/api/users', {
@@ -48,13 +54,17 @@ async function signupFormHandler(event) {
 async function loginFormHandler(event) {
     event.preventDefault();
 
-    const email = document.querySelector('input[type="email"]').value.trim();
-    const password = document.querySelector('input[type="password"]').value.trim();
+    const email = document.querySelector('#floatingInputLog').value.trim();
+    const password = document.querySelector('#floatingPasswordLog').value.trim();
   
     if (email && password) {
       login(email, password);
     }
-  }
+}
 
-document.querySelector('#signup-btn').addEventListener('click', signupFormHandler);
-document.querySelector('#login-btn').addEventListener('click', loginFormHandler);
+loginBtn.addEventListener('click', () =>{
+  loginForm.classList.add('active');
+});
+
+document.querySelector('#register-form').addEventListener('submit', signupFormHandler);
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);

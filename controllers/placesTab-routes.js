@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Place } = require('../models');
+const { Place, Trip, User, UserTrip } = require('../models');
 //insert cons for password package
 
 
@@ -12,13 +12,36 @@ router.get('/', (req, res) => {
     attributes: [
       'id',
       'name',
-      // 'created_at',
     ],
-    
+    include: {
+      model: Trip,
+      attributes: [
+        'id',
+        'title',
+        'place_id'
+      ],
+      include: {
+        model: UserTrip,
+        attributes: [ 'user_id', 'trip_id' ],
+        include: {
+          model: User,
+          attributs: [ 'firstName', 'lastName' ]
+        }
+      }
+    }
   })
     .then(dbPlaceData => {
       const places = dbPlaceData.map(place => place.get({ plain: true }));
-      res.render('places', { places, loggedIn: true });
+
+      User.findAll()
+        .then(dbUserData => {
+          const users = dbUserData.map(user => user.get({ plain: true }));
+          res.render('places', { places, users, loggedIn: req.session.loggedIn });
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+        })
     })
     .catch(err => {
       console.log(err);
@@ -53,9 +76,6 @@ router.get('/edit/:id', (req, res) => {
 });
 
 module.exports = router;
-
-
-
 
 
 

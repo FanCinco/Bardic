@@ -27,4 +27,4 @@ async function storyFormHandler(e) {
     }
 }
 
-document.querySelector('.story-form button').addEventListener('click', storyFormHandler);
+document.querySelector('#create-story').addEventListener('submit', storyFormHandler);

@@ -149,7 +149,7 @@ router.get('/:id', (req, res) => {
             const story = dbStoryData.get({ plain: true });
 
             if (!req.session.loggedIn) {
-                res.render('single-story', { story, loggedIn: req.session.loggedIn });
+                res.render('single-story', { story, loggedIn: false });
                 return;
             }
             User.findOne({
@@ -183,6 +183,8 @@ router.get('/:id', (req, res) => {
                 const editable = user.id === story.user_id;
                 const canPost = user.usertrips.some(usertrip => story.trip_id === usertrip.trip_id);
                 story.posts.forEach(post => {
+                    post.loggedIn = req.session.loggedIn;
+
                     if (post.user_id === user.id) {
                         post.canEdit = true;
                         return;

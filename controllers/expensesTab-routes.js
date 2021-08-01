@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Expense } = require('../models');
+const { Day, Expense, Trip, User, UserTrip } = require('../models');
 //insert cons for password package
 
 
@@ -8,24 +8,35 @@ const { Expense } = require('../models');
 router.get('/', (req, res) => {
     console.log(req.session);
     console.log('======================');
-    Expense.findAll({
-        attributes: [
-            'id',
-            'description',
-            'cost',
-            'day_id',
-            // 'created_at',
-        ],
-        // include: [
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-        // ]
-    })
-        .then(dbExpenseData => {
-            const expenses = dbExpenseData.map(expense => expense.get({ plain: true }));
-            res.render('expenses', { expenses, loggedIn: true });
+
+    if (!req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    User.findOne(
+        {
+            where: {
+                email: req.session.email
+            },
+            attributes: { exclude: ['password'] },
+            include: {
+                model: UserTrip,
+                include: {
+                    model: Trip,
+                    include: {
+                        model: Day,
+                        include: {
+                            model: Expense
+                        }
+                    }
+                }
+            }
+        }
+    )
+        .then(dbUserData => {
+            const user = dbUserData.get({ plain: true });
+            console.log(user.usertrips);
+            res.render('expenses', { user, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);

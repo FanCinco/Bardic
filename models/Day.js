@@ -14,7 +14,7 @@ Day.init(
       autoIncrement: true
     },
     date: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     trip_id: {
