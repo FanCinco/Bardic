@@ -34,6 +34,16 @@ main {
   margin-top: 7.4rem;
 }
 
+.logo {
+  position: relative;
+}
+
+.logo span {
+  position: absolute;
+  right: 50px;
+  max-height: 40px;
+}
+
 .list-item {
   font-size: medium;
   list-style: none;
@@ -599,6 +609,10 @@ header .icons i:hover{
     padding:2rem;
   }
 
+  .logo span {
+    display: none;
+  }
+
   section{
     padding:2rem;
   }
@@ -632,6 +646,9 @@ header .icons i:hover{
     background:#222;
   }
 
+  .logo span {
+    display: block;
+  }
 }
 
 @media (max-width:450px){
@@ -687,7 +704,6 @@ header .icons i:hover{
   border-width: 1px;
   margin-bottom: 2px;
   width: 250px;
-  /* margin: 0px 0px 0px -1em; */
 }
 
 textarea {
