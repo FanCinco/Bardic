@@ -658,12 +658,11 @@ header .icons i:hover{
 }
 
 .storyaddMain {
-  padding: 1em;
   max-width: 250px;
 }
 
 #story-1 {
-  padding: 8vh 1em 1em 1em;
+  padding: 1vh 1em 1em 1em;
 }
 
 .storyCurrent {
@@ -672,7 +671,7 @@ header .icons i:hover{
   border-width: 1px;
   margin-bottom: 2px;
   width: 250px;
-  margin: 0px 0px 0px -1em;
+  /* margin: 0px 0px 0px -1em; */
 }
 
 textarea {
@@ -684,3 +683,31 @@ textarea {
   display: flex;
   align-items: center;
 }
+
+.storyArticle {
+  text-align: center;
+}
+
+#edit-btn {
+  margin-right: 4px;
+}
+
+#delete-btn {
+  margin-left: 4px;
+}
+
+.post {
+  text-align: -webkit-center;
+}
+
+/* expenses styling */
+
+#expense-data {
+  font-size: 1.4em;
+  padding-top: 1em;
+}
+
+.expenseDescription {
+  font-weight: bold;
+}
+
