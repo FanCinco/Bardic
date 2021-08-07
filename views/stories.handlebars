@@ -23,20 +23,20 @@
 
                     {{#if loggedIn}}
 
-                    <form class="story-form d-flex flex-column align-items-start" id="{{user.id}}">
+                    <form class="story-form inputBox" id="{{user.id}}">
 
-                        <div id="title">
-                            <label for="story-title">Title</label>
+                        <h3>Title</h3>
+                        <div id="title" class="inputBox">
                             <input type="text" id="story-title" name="story-title" class="storyAdd">
                         </div>
 
-                        <div id="startingText">
-                            <label for="story-startingText">Starting Text</label>
+                        <h3>Starting Text</h3>
+                        <div id="startingText" class="inputBox">
                             <textarea name="story-startingText" id="story-startingText" class="form-control-m storyAdd" rows="3"></textarea>
                         </div>
 
-                        <div id="trip-id">
-                            <label for="story-trip-id">Which Trip Was It?</label>
+                        <h3>Which Trip Was It?</h3>
+                        <div id="trip-id" class="inputBox">
                             <select name="story-trip-id" id="story-trip-id">
 
                                 <option value="default" selected ></option>
@@ -46,6 +46,9 @@
                                 {{/each}}
                                 
                             </select>
+                            <div>
+                                <a href="/places">Haven't shared a trip with us yet? Click here to tell us all about it!</a>
+                            </div>
                         </div>
 
                         <input type="submit" class="btn" value="post story">
