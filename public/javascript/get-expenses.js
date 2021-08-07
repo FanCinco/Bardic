@@ -33,7 +33,7 @@ async function getExpensesHandler(e) {
                 const expenseCostEl = document.createElement('p');
                 expenseCostEl.className = 'expenseCost';
 
-                expenseDescriptionEl.textContent =expense.description;
+                expenseDescriptionEl.textContent = expense.description;
                 expenseCostEl.textContent = "$" + expense.cost;
     
                 expenseEl.appendChild(expenseDescriptionEl);

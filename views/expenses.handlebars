@@ -17,14 +17,17 @@
     <div class="row">
 
         <form action="" id="create-expense-form">
-            <div class="inputbox">
-                <h3>trip</h3>
+            <div class="inputBox">
+                <h3>Which trip was this expense made on?</h3>
                 <select name="trip-select" class="form-control" id="trip-select" placeholder="Which trip was this on?">
-                    <option value=""></option>
+                    <option value="">Please Select a Trip!</option>
                     {{#each user.usertrips as |usertrip|}}
                     <option value="{{usertrip.trip.id}}">{{usertrip.trip.title}}</option>
                     {{/each}}
                 </select>
+                <div>
+                    <a href="/places">Haven't shared a trip with us yet? Click here to tell us all about it!</a>
+                </div>
             </div>
             <div class="inputBox">
                 <h3> description </h3>
@@ -44,18 +47,21 @@
                 <h3>Expenses by Date</h3>
             </div>
             <div class="m-2 w-100">
-                <div class="inputbox">
+                <div class="inputBox">
                     <h3>trip</h3>
                     <select name="trip-select" class="form-control" id="get-expense-trip-select" placeholder="Which trip was this on?">
-                        <option value=""></option>
+                        <option value="">Please select a trip!</option>
                         {{#each user.usertrips as |usertrip|}}
                         <option value="{{usertrip.trip.id}}">{{usertrip.trip.title}}</option>
                         {{/each}}
                     </select>
+                    <div>
+                        <a href="/places">Haven't shared a trip with us yet? Click here to tell us all about it!</a>
+                    </div>
                 </div>
-                <div class="form-group row align-items-center justify-content-around">
+                <div class="form-group row align-items-center justify-content-around inputBox">
+                    <h3>Date</h3>
                     <div style="width: 60%; margin-left:3px;" class="d-flex">
-                        <label class="mr-2">Date:</label>
                         <input type="text" class="form-control day-lookup" placeholder="MM/DD/YYYY"/>
                     </div>
                     <div style="width: 40%;">
@@ -69,8 +75,8 @@
             
         </form>
         
-        <div class="image">
-            <img src="images/chart.png" alt="">
+        <div class="image" id="chart">
+            {{!-- Charts are put in this box --}}
         </div>
 
     </div>
@@ -80,4 +86,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/add-expense.js"></script>
 <script src="/javascript/get-expenses.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js" integrity="sha512-asxKqQghC1oBShyhiBwA+YgotaSYKxGP1rcSYTDrB0U6DxwlJjU59B67U8+5/++uFjcuVM8Hh5cokLjZlhm3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascript/generate-chart.js"></script>
 <!-- places section ends -->

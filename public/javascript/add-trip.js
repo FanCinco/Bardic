@@ -47,7 +47,7 @@ async function addTripHandler(e) {
         });
 
         if (response.ok) {
-            // document.location.reload();
+            document.location.replace('/stories');
         } else {
             alert(response.statusText);
         }
