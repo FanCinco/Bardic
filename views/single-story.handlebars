@@ -11,7 +11,7 @@
     <div class="container">
         <div class="col-6 gx-1">
             <div class="row">
-                <a href="/stories"><h3>&larr; back to stories</h3></a>
+                <a href="/stories"><h3>&larr; Back to stories</h3></a>
                 <br>
                 <article class= "storyArticle" id="story-{{story.id}}">
                     <div class="initial-story bg-primary">
@@ -24,7 +24,7 @@
                             {{/if}}
                         </div>
                         <div class="story-user">
-                            <p>posted by {{story.user.firstName}} {{story.user.lastName}} on {{format_date story.createdAt}}</p>
+                            <p style="font-weight: bold; font-size: 15px;">Posted by {{story.user.firstName}} {{story.user.lastName}} on {{format_date story.createdAt}}</p>
                         </div>
                         <div class="story-startingText input-group">
                             {{#unless editable}}

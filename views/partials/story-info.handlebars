@@ -3,15 +3,15 @@
         <div class="story-title ">
             <h2>{{title}}</h2>
         </div>
-        <div class="story-user">
-            <p>posted by {{user.firstName}} {{user.lastName}} on {{format_date createdAt}}</p>
-        </div>
         <div class="story-startingText border border-info">
             <p>{{startingText}}</p>
+        <div class="story-user">
+            <p style="font-weight: bold; font-size: 15px;">Posted by {{user.firstName}} {{user.lastName}} on {{format_date createdAt}}</p>
+        </div>
         </div>
     </div>
 </article>
-<div class="posts">
+<div class="posts user-post">
 {{#each posts as |post| }}
 {{> post-info post }}
 {{/each}}
